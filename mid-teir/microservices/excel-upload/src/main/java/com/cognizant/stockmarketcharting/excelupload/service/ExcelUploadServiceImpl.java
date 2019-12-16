@@ -23,10 +23,10 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	 @Autowired
 	 ExcelUploadRepository excelUploadRepository;
 	@Override
-	public void uploadFileService() throws FileNotFoundException {
+	public void uploadFileService(String filePath) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		String filePath="C:\\Users\\Admin\\Downloads\\sample_stock_data3.xlsx";
+		
 		 FileInputStream inputStream = new FileInputStream(filePath);
 		 
 		
@@ -37,7 +37,6 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 			 Sheet firstSheet = workbook.getSheetAt(0);
 	         Iterator<Row> rowIterator = firstSheet.iterator();
 	      
-	         int count = 0;
              
 	            rowIterator.next();
 	            
@@ -48,9 +47,7 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                StockPrice stockPrice = new StockPrice();
 	                while (cellIterator.hasNext()) {
 	                    Cell nextCell = cellIterator.next();
-
 	                    int columnIndex = nextCell.getColumnIndex();
-	                   
 	                    switch (columnIndex) {
 	                    case 0:
 	                        String companyCode = nextCell.getStringCellValue();
@@ -82,11 +79,9 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                    	default:
 	                    		break;
 	                    }
-
 	                }
 	                if(stockPrice.getCompanyCode()!=null) {
-	                 excelUploadRepository.save(stockPrice);}
-	                 
+	                 excelUploadRepository.save(stockPrice);}              
 	                }     
 	            workbook.close();
 	            
