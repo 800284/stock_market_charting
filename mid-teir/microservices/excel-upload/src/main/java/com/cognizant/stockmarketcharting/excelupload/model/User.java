@@ -1,4 +1,4 @@
-package com.cognizant.stockmarketcharting.authenticationservice.model;
+package com.cognizant.stockmarketcharting.excelupload.model;
 
 import java.util.Set;
 
