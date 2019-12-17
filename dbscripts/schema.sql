@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`board_members` (
 INSERT INTO `stock_market_chart`.`role` (`ro_id`, `ro_name`) VALUES ('1', 'ADMIN');
 INSERT INTO `stock_market_chart`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'USER');
 
-INSERT INTO `stock_market_chart`.`user` (`us_id`, `us_user_name`, `us_password`, `us_email`, `us_mobile_number`, `us_confirmed`) VALUES ('1', 'admin', '$2a$10$R/lZJuT9skteNmAku9Y7aeutxbOKstD5xE5bHOf74M2PHZipyt3yK', 'a@gmail.com', '7894561230', '1');
+INSERT INTO `stock_market_chart`.`user` (`us_id`, `us_username`, `us_password`, `us_email`, `us_contact_no`, `us_confirmation`) VALUES ('1', 'admin', '$2a$10$R/lZJuT9skteNmAku9Y7aeutxbOKstD5xE5bHOf74M2PHZipyt3yK', 'a@gmail.com', '7894561230', '1');
 
 INSERT INTO `stock_market_chart`.`user_role` (`ur_id`, `ur_us_id`, `ur_ro_id`) VALUES ('1', '1', '1');
 
