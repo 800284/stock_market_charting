@@ -1,0 +1,41 @@
+.additional-margin {
+    margin-top: 16%;
+    width: 400px;
+    margin-bottom: 10%;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 330px) {
+    .right-margin {
+        margin-right: 80%
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .bottom-margin {
+        margin-bottom: 25%;
+    }
+}
+
+@media screen and (min-width: 350px) {
+    .bottom-margin {
+        margin-bottom: 25%;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .bottom-margin {
+        margin-bottom: 20%;
+    }
+}
+
+@media screen and (min-width: 375px) {
+    .bottom-margin {
+        margin-bottom: 20%;
+    }
+}

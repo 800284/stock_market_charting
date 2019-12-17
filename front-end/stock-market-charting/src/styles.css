@@ -1,1 +1,104 @@
-/* You can add global styles to this file, and also import other style files */
+.nav-color {
+    background-color: #d3d3d3;
+}
+.background-color-tips {
+    background-color: #d3d3d3;
+}
+.top-margin{
+margin-top:10%;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(236, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+article {
+    margin-bottom: 80px;
+}
+
+.image-alignment {
+    text-align: center;
+}
+
+.text-alignment {
+    text-align: center;
+}
+
+.con {
+    width: 500px;
+    height: 400px;
+    opacity: 0.6;
+    background: #000;
+    color: #fff;
+}
+
+
+.jumbotron {
+    background-image: url("/assets/abc.jpg");
+    height: 519px;
+    background-size: cover;
+}
+
+@media screen and (max-width: 550px) {
+    .container-size {
+      width: 300px;
+      height:400px;
+    }
+    .font-size-custom{
+        font-size: 16px;
+    }
+    .font-size-custom-others{
+        font-size: 19px;
+    }
+}
+.section-margin {
+    margin-top: 12%;
+    margin-bottom: 10%;
+ }
+ .notify-requirement{
+    width: 100%;
+    
+    height: 200px;
+    align-self: center;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+.alert-box-requirement{
+    width: 100%;
+    
+}
+.navbar-logo-style {
+	display: inline-flex;
+	vertical-align: middle;
+}
+.faq-margin{
+margin-top:10%
+
+}
+.faq-section-margin {
+    
+    margin-bottom:5%;
+ }
+ .test-scroll{
+
+    overflow-x: scroll;
+ }
+ 
+.test-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .test-scroll::-webkit-scrollbar-track {
+    background: #d3d3d3; 
+  }
+   
+  /* Handle */
+  .test-scroll::-webkit-scrollbar-thumb {
+    background: #d3d3d3; 
+  }
+  
+  /* Handle on hover */
+  .test-scroll::-webkit-scrollbar-thumb:hover {
+    background: #d3d3d3; 
+  }

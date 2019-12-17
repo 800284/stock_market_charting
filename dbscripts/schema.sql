@@ -151,3 +151,12 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`company_stock` (
 		ON UPDATE NO ACTION)
 	ENGINE = InnoDB;
 
+
+CREATE TABLE IF NOT EXISTS `stock_market_chart`.`confirm_email` (
+  `ce_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ce_token` VARCHAR(450) NOT NULL,
+  `ce_us_name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`ce_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4;

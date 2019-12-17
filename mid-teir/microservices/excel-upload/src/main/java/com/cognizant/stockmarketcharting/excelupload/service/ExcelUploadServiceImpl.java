@@ -49,7 +49,7 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	            
 	            while (rowIterator.hasNext() ) {
 	                Row nextRow = rowIterator.next();
-	               count = count+1;
+	            
 	                Iterator<Cell> cellIterator = nextRow.cellIterator();
 	                StockPrice stockPrice = new StockPrice();
 	                while (cellIterator.hasNext()) {
@@ -101,7 +101,10 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                    }
 	                }
 	                if(stockPrice.getCompanyCode()!=null) {
-	                 excelUploadRepository.save(stockPrice);}              
+	                	StockPrice newStockPrice = excelUploadRepository.getStock(stockPrice.getDate(),stockPrice.getTime(),stockPrice.getCompanyCode(),stockPrice.getStockExchange());
+	                 if(newStockPrice == null) {
+	                	   count = count+1;
+	                	excelUploadRepository.save(stockPrice);} }             
 	                }     
 	            workbook.close();
 	            
@@ -109,8 +112,11 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		excelUploadDTO.setNoOfRecords(count-1);
+		if(count==0) {
+		excelUploadDTO.setNoOfRecords(count);}
+		else {
+			excelUploadDTO.setNoOfRecords(count-1);
+		}
 		excelUploadDTO.setCompanyName(companyRepository.findByCompanyCode(companyCodeNew).getName());
 		excelUploadDTO.setMaxDate(maxDate);
 		excelUploadDTO.setMinDate(minDate);

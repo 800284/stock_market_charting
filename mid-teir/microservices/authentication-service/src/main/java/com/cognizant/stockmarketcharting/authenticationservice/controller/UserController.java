@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ import com.cognizant.stockmarketcharting.authenticationservice.exception.UserAlr
 import com.cognizant.stockmarketcharting.authenticationservice.model.User;
 import com.cognizant.stockmarketcharting.authenticationservice.repository.UserRepository;
 import com.cognizant.stockmarketcharting.authenticationservice.security.AppUserDetailsService;
+import com.cognizant.stockmarketcharting.authenticationservice.service.EmailService;
+import com.cognizant.stockmarketcharting.authenticationservice.service.UserConfirmationService;
 
 
 
@@ -43,6 +46,12 @@ public class UserController {
 	@Autowired
 	PasswordEncoder passwordEncoder; 
 	
+
+	@Autowired
+	UserConfirmationService userConfirmationService;
+	@Autowired
+	EmailService emailService;
+	
 	@GetMapping()
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
@@ -50,29 +59,17 @@ public class UserController {
 
 	@PostMapping()
 	public boolean signup(@RequestBody @Valid User user) throws UserAlreadyExistsException {
-		LOGGER.info("START");
-		LOGGER.debug("{}",user);
-		// Create validator factory
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-
-		// Validation is done against the annotations defined in country bean
-		Set<ConstraintViolation<User>> violations = validator.validate(user);
-		List<String> errors = new ArrayList<String>();
-
-		// Accumulate all errors in an ArrayList of type String
-		for (ConstraintViolation<User> violation : violations) {
-			errors.add(violation.getMessage());
-		}
-
-		// Throw exception so that the user of this web service receives appropriate
-		// error message
-		if (violations.size() > 0) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.toString());
-		}
-
+		LOGGER.info("SIGNUP controller Start");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		LOGGER.info("END");
-        return appUserDetailsService.signup(user);
+		boolean status =  appUserDetailsService.signup(user);
+		String token = userConfirmationService.setTokenForConfirmation(user.getUsername());
+		emailService.send("ctstestmail10@gmail.com", user.getEmail(), "confirm your email for Stock Exchange by clicking here", "http://localhost:8083/authentication-service/stock-market-charting/users/confirm/"+token);
+		LOGGER.info("SIGNUP controller End");
+		return status;
+	}
+	
+	@GetMapping("/confirm/{token}")
+	public void confirmMail(@PathVariable String token) {
+		userConfirmationService.confirmMailAddress(token);
 	}
 }

@@ -1,0 +1,87 @@
+<div class="container d-flex justify-content-center ">
+    <section class="border shadow-lg rounded-lg additional-margin">
+        <h1 class="mt-5 ml-3 text-danger text-alignment ">Login</h1>
+        <div class="form-row mb-5 ml-4  mr-5 mb-5 d-none d-md-block ">
+            <div class="col-sm-12 text-alignment ml-5 ">
+                <span *ngIf="loginFlag">
+                    <div class="text-danger position-absolute alert alert-danger rounded mb-5">
+                        Invalid Username/Password
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="form-row mb-5 ml-4  d-sm-block d-md-none d-none">
+            <div class="col-sm-12 text-alignment ml-5 mr-5 mb-4 ">
+                <span *ngIf="loginFlag">
+                    <div class="text-danger position-absolute alert alert-danger rounded mb-5">
+                        Invalid Username/Password
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="form-row right-margin bottom-margin d-block mb-5 d-sm-none">
+            <div class="">
+                <div class="col-sm-12 text-alignment ml-5 mr-5 mb-5 ">
+                    <span *ngIf="loginFlag">
+                        <div class="text-danger position-absolute alert alert-danger rounded mb-5">
+                            Invalid Username/Password
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+            <div class="mt-5">
+                <div class="form-row ml-3 mr-3 mt-5">
+                    <div class="col-sm-12 mt-4 aaa">
+                        <div class="input-group-append">
+                            <label for="username"><i class="material-icons mt-2"><label
+                                        for="username">person</label></i></label>
+                            <input type="text" [ngClass]="[userName.dirty && userName.valid ? 'is-valid' : '',
+                            userName.dirty && userName.invalid ? 'is-invalid' : '', 
+                            userName.valid || userName.invalid ? 'form-control font-20 mb-1' : '']"
+                                placeholder="Enter Username" name="userName" id="username"
+                                class="border-top-0 border-left-0 border-right-0 rounded-0" #userName="ngModel" ngModel
+                                required />
+                        </div>
+                        <span *ngIf="userName.dirty">
+                            <span *ngIf="userName.errors?.required" class="error-msg">
+                                <div class="position-absolute text-danger ml-4"> Username is required</div>
+                            </span>
+                        </span>
+
+
+                    </div>
+                </div>
+                <div class="form-row ml-3 mr-3">
+                    <div class="col-sm-12 mt-4">
+                        <div class="input-group-append">
+                            <label for="firstname"><i class="material-icons mt-2"><label
+                                        for="password">vpn_key</label></i></label>
+                            <input type="password" [ngClass]="[password.dirty && password.valid ? 'is-valid' : '',
+                    password.dirty && password.invalid ? 'is-invalid' : '', 
+                    password.valid || password.invalid ? 'form-control font-20 mb-1' : '']" class="form-control"
+                                placeholder="Enter Password" id="password" name="password" #password="ngModel" ngModel
+                                required class="border-top-0 border-left-0 border-right-0 rounded-0" />
+                        </div>
+                        <span *ngIf="password.dirty">
+                            <span *ngIf="password.errors?.required" class="error-msg">
+                                <div class="position-absolute text-danger ml-4">Password is required</div>
+                            </span>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="form-row mt-5 mb-5 ml-3 mr-3">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-danger">Login</button>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-muted float-right">New here?<a routerLink="/register">Signup</a></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

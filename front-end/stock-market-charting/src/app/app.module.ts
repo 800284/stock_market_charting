@@ -8,7 +8,10 @@ import { ImportExcelComponent } from './stock-market/import-excel/import-excel.c
 import { HomePageComponent } from './stock-market/home-page/home-page.component';
 import { GetSummaryComponent } from './stock-market/get-summary/get-summary.component';
 import { HeaderComponent } from './header/header.component';
-
+import { SignupComponent } from './site/signup/signup.component';
+import { LoginComponent } from './site/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupSuccessComponent } from './site/signup-success/signup-success.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,12 +19,18 @@ import { HeaderComponent } from './header/header.component';
     HomePageComponent,
     GetSummaryComponent,
     HeaderComponent,
+    SignupComponent,
+    LoginComponent,
+    SignupSuccessComponent,
 
   ],
   imports: [
+    
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
