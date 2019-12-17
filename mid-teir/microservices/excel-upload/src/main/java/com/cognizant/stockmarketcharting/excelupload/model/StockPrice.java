@@ -19,7 +19,7 @@ public class StockPrice {
 	private int id;
 	
 	@Column(name="sp_company_code")
-	private String companyCode;
+	private Long companyCode;
 	
 	@Column(name="sp_stock_exchange")
 	private String stockExchange;
@@ -38,7 +38,7 @@ public class StockPrice {
 	
 	}
 
-	public StockPrice(int id, String companyCode, String stockExchange, Long currentPrice, Date date, Time time) {
+	public StockPrice(int id, Long companyCode, String stockExchange, Long currentPrice, Date date, Time time) {
 		super();
 		this.id = id;
 		this.companyCode = companyCode;
@@ -56,11 +56,11 @@ public class StockPrice {
 		this.id = id;
 	}
 
-	public String getCompanyCode() {
+	public Long getCompanyCode() {
 		return companyCode;
 	}
 
-	public void setCompanyCode(String companyCode) {
+	public void setCompanyCode(Long companyCode) {
 		this.companyCode = companyCode;
 	}
 

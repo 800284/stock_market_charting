@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-
 @Component({
-  selector: 'app-upload-file',
-  templateUrl: './upload-file.component.html',
-  styleUrls: ['./upload-file.component.css']
+  selector: 'app-import-excel',
+  templateUrl: './import-excel.component.html',
+  styleUrls: ['./import-excel.component.css']
 })
-export class UploadFileComponent {
-
+export class ImportExcelComponent implements OnInit {
+  uploadFlag:boolean=false;
   apiEndPoint = "http://localhost:8087/stock-market-charting/upload";
 
   constructor(private http:HttpClient) {
   }
+
+  ngOnInit(){}
 
   fileChange(event) {
     let fileList: FileList = event.target.files;
@@ -25,10 +25,9 @@ export class UploadFileComponent {
       headers.append('Accept', 'application/json');
       this.http.post(this.apiEndPoint, formData)
         .subscribe(
-        data => console.log('success'),
-        error => console.log(error)
+              (response)=>this.uploadFlag =true
+        
         )
     }
   }
-
 }

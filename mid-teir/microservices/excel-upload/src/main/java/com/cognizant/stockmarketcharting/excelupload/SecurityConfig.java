@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.cors();
 		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests()
 		.antMatchers("/stock-market-charting/upload").permitAll()
+		.antMatchers("/stock-market-charting/summary").permitAll()
 				.anyRequest().authenticated().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		LOGGER.info("End");
 	}

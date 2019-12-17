@@ -59,7 +59,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stock_market_chart`.`company` (
   `cp_id` INT NOT NULL AUTO_INCREMENT,
-  `cp_code` VARCHAR(20) NOT NULL,
+  `cp_code` BIGINT NOT NULL,
   `cp_name` VARCHAR(30) NOT NULL,
   `cp_turnover` BIGINT NOT NULL,
   `cp_ceo` VARCHAR(30) NOT NULL,
@@ -76,13 +76,15 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`company` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into  `stock_market_chart`.`company`(cp_id,cp_code,cp_name,cp_turnover,cp_ceo,cp_board_of_directors,cp_listed,
+cp_se_id,cp_brief) values(1,500112,"SBI",112333,"JOHN","ABNCDFGGGG",TRUE,1,"NICE COMPANY");
 -- -----------------------------------------------------
 -- Table `stock_market_chart`.`stock_price`
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `stock_market_chart`.`stock_price` (
   `sp_id` INT NOT NULL AUTO_INCREMENT,
-  `sp_company_code` VARCHAR(30) NOT NULL,
+  `sp_company_code` BIGINT NOT NULL,
   `sp_stock_exchange` VARCHAR(30) NOT NULL,
   `sp_current_price` BIGINT NOT NULL,
   `sp_date` DATE NOT NULL,
@@ -116,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`sector` (
   PRIMARY KEY (`se_id`))
 ENGINE = InnoDB;
 
+INSERT INTO `stock_market_chart`.`sector`(se_id,se_sector_name,se_brief) values(1,"IT","software and tech");
 -- -----------------------------------------------------
 -- Table `stock_market_chart`.`company`
 -- -----------------------------------------------------
@@ -147,3 +150,4 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`company_stock` (
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION)
 	ENGINE = InnoDB;
+

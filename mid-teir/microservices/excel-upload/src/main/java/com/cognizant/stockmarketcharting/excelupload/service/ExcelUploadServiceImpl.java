@@ -14,7 +14,9 @@ import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cognizant.stockmarketcharting.excelupload.dto.ExcelUploadDTO;
 import com.cognizant.stockmarketcharting.excelupload.model.StockPrice;
+import com.cognizant.stockmarketcharting.excelupload.repository.CompanyRepository;
 import com.cognizant.stockmarketcharting.excelupload.repository.ExcelUploadRepository;
 
 @Service
@@ -22,6 +24,10 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 
 	 @Autowired
 	 ExcelUploadRepository excelUploadRepository;
+	 Long companyCodeNew;
+	 @Autowired 
+	 CompanyRepository companyRepository;
+	 ExcelUploadDTO excelUploadDTO =new ExcelUploadDTO();
 	@Override
 	public void uploadFileService(String filePath) throws FileNotFoundException {
 		// TODO Auto-generated method stub
@@ -30,19 +36,19 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 		 FileInputStream inputStream = new FileInputStream(filePath);
 		 
 		
-		
+		 int count=0;
 		 Workbook workbook;
 		try {
 			workbook = new XSSFWorkbook(inputStream);
 			 Sheet firstSheet = workbook.getSheetAt(0);
 	         Iterator<Row> rowIterator = firstSheet.iterator();
 	      
-             
+            
 	            rowIterator.next();
 	            
 	            while (rowIterator.hasNext() ) {
 	                Row nextRow = rowIterator.next();
-	               
+	               count = count+1;
 	                Iterator<Cell> cellIterator = nextRow.cellIterator();
 	                StockPrice stockPrice = new StockPrice();
 	                while (cellIterator.hasNext()) {
@@ -50,9 +56,10 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                    int columnIndex = nextCell.getColumnIndex();
 	                    switch (columnIndex) {
 	                    case 0:
-	                        String companyCode = nextCell.getStringCellValue();
+	                        Long companyCode = (long) nextCell.getNumericCellValue();
 	                        stockPrice.setCompanyCode(companyCode);
 	                        System.out.println("=================>" + stockPrice.getCompanyCode());
+	                        companyCodeNew=companyCode;
 	                        break;
 	                    case 1:
 	                        String stockExchange = nextCell.getStringCellValue();
@@ -89,10 +96,21 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
-        
-
 		
+		excelUploadDTO.setNoOfRecords(count-1);
+		excelUploadDTO.setCompanyName(companyRepository.findByCompanyCode(companyCodeNew).getName());
+		excelUploadDTO.setMaxDate(excelUploadRepository.maxDate());
+		excelUploadDTO.setMinDate(excelUploadRepository.minDate());
+		
+		System.out.println(excelUploadDTO);
+		
+	}
+	
+
+	@Override
+	public ExcelUploadDTO getSummary() {
+		// TODO Auto-generated method stub
+		return excelUploadDTO;
 	}
 
 }

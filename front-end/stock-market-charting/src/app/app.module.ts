@@ -3,15 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UploadFileComponent } from './upload-file/upload-file.component';
-import { UploadFileNewComponent } from './upload-file-new/upload-file-new.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ImportExcelComponent } from './stock-market/import-excel/import-excel.component';
+import { HomePageComponent } from './stock-market/home-page/home-page.component';
+import { GetSummaryComponent } from './stock-market/get-summary/get-summary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UploadFileComponent,
-    UploadFileNewComponent
+    ImportExcelComponent,
+    HomePageComponent,
+    GetSummaryComponent,
+
   ],
   imports: [
     BrowserModule,
