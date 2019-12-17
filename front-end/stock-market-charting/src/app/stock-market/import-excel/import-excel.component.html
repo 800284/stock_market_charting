@@ -1,10 +1,11 @@
 <div  *ngIf="!uploadFlag">
-  <input type="file" 
-(change)="fileChange($event)"
-placeholder="Upload file" 
-accept=".xlsx" class="btn btn-primary ">
+    <div class="container mt-5">
+    <div class="custom-file">
+    <input type="file" class="custom-file-input" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.xlsx"/>
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 </div>
-
+</div>
+</div>
 <div  *ngIf="uploadFlag">
   <app-get-summary></app-get-summary>
 </div>
