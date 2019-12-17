@@ -1,16 +1,22 @@
 package com.cognizant.stockmarketcharting.excelupload.model;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-
 
 @Entity
 @Table(name="company")
@@ -39,8 +45,9 @@ public class Company {
 	private String ceo;
 	
 	@NotNull
-	@Column(name="cp_board_of_directors")
-	private String boardOfDirectors;
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "bm_cp_id")
+	private List<BoardOfDirectors> boardOfDirectorsList;
 	
 	@NotNull
 	@Column(name="cp_listed")
@@ -54,21 +61,16 @@ public class Company {
 	@NotNull
 	@Column(name="cp_brief")
 	private String aboutCompany;
-	public Company() {super();}
-
-	public Company(int id, Long companyCode, String name, Long turnover, String ceo, String boardOfDirectors,
-			boolean listed, Sector sector, String aboutCompany) {
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "company_stock",
+			joinColumns = @JoinColumn(name = "cs_cp_id"),
+			inverseJoinColumns = @JoinColumn(name="cs_ex_id"))
+	private Set<StockExchange> stockExchanges;
+	
+	public Company() {
 		super();
-		this.id = id;
-		this.companyCode = companyCode;
-		this.name = name;
-		this.turnover = turnover;
-		this.ceo = ceo;
-		this.boardOfDirectors = boardOfDirectors;
-		this.listed = listed;
-		this.sector = sector;
-		this.aboutCompany = aboutCompany;
-	}
+		}
 
 	public int getId() {
 		return id;
@@ -93,7 +95,7 @@ public class Company {
 	public void setName(String name) {
 		this.name = name;
 	}
- 
+
 	public Long getTurnover() {
 		return turnover;
 	}
@@ -110,12 +112,12 @@ public class Company {
 		this.ceo = ceo;
 	}
 
-	public String getBoardOfDirectors() {
-		return boardOfDirectors;
+	public List<BoardOfDirectors> getBoardOfDirectorsList() {
+		return boardOfDirectorsList;
 	}
 
-	public void setBoardOfDirectors(String boardOfDirectors) {
-		this.boardOfDirectors = boardOfDirectors;
+	public void setBoardOfDirectorsList(List<BoardOfDirectors> boardOfDirectorsList) {
+		this.boardOfDirectorsList = boardOfDirectorsList;
 	}
 
 	public boolean isListed() {
@@ -142,12 +144,21 @@ public class Company {
 		this.aboutCompany = aboutCompany;
 	}
 
-	@Override
-	public String toString() {
-		return "Company [id=" + id + ", companyCode=" + companyCode + ", name=" + name + ", turnover=" + turnover
-				+ ", ceo=" + ceo + ", boardOfDirectors=" + boardOfDirectors + ", listed=" + "sector  = "+sector+ listed + ", aboutCompany="
-				+ aboutCompany + "]";
-	} 
+	public Company(@NotNull int id, @NotNull Long companyCode, @NotNull String name, @NotNull Long turnover,
+			@NotNull String ceo, @NotNull List<BoardOfDirectors> boardOfDirectorsList, @NotNull boolean listed,
+			@NotNull Sector sector, @NotNull String aboutCompany) {
+		super();
+		this.id = id;
+		this.companyCode = companyCode;
+		this.name = name;
+		this.turnover = turnover;
+		this.ceo = ceo;
+		this.boardOfDirectorsList = boardOfDirectorsList;
+		this.listed = listed;
+		this.sector = sector;
+		this.aboutCompany = aboutCompany;
+	}
+
 	
 	
 	

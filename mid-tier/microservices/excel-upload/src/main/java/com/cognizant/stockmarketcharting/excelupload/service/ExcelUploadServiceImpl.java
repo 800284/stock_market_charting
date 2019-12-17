@@ -25,6 +25,7 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	 @Autowired
 	 ExcelUploadRepository excelUploadRepository;
 	 Long companyCodeNew;
+	 String stockExchangeName;
 	 @Autowired 
 	 CompanyRepository companyRepository;
 	 ExcelUploadDTO excelUploadDTO =new ExcelUploadDTO();
@@ -65,6 +66,7 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                    case 1:
 	                        String stockExchange = nextCell.getStringCellValue();
 	                        stockPrice.setStockExchange(stockExchange);
+	                        stockExchangeName=stockExchange;
 	                        System.out.println("=================>" + stockExchange);
 	                        break;
 	                    case 2:
@@ -118,6 +120,7 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 		else {
 			excelUploadDTO.setNoOfRecords(count-1);
 		}
+		excelUploadDTO.setStockExchange(stockExchangeName);
 		excelUploadDTO.setCompanyName(companyRepository.findByCompanyCode(companyCodeNew).getName());
 		excelUploadDTO.setMaxDate(maxDate);
 		excelUploadDTO.setMinDate(minDate);

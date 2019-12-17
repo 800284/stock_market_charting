@@ -37,8 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		LOGGER.info("Start");
 		httpSecurity.cors();
-		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/stock-market-charting/users").permitAll()
+		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests()
+		.antMatchers("/stock-market-charting/users").permitAll()
 		.antMatchers("/stock-market-charting/users/confirm/{token}").permitAll()
+		.antMatchers("/stock-market-charting/users/{username}").permitAll()
 				.anyRequest().authenticated().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		LOGGER.info("End");
 	}

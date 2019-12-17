@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`company` (
   `cp_name` VARCHAR(30) NOT NULL,
   `cp_turnover` BIGINT NOT NULL,
   `cp_ceo` VARCHAR(30) NOT NULL,
-  `cp_board_of_directors` VARCHAR(500) NOT NULL,
   `cp_listed` BOOLEAN DEFAULT FALSE,
   `cp_se_id` INT NOT NULL,
   `cp_brief` VARCHAR(600) NOT NULL,
@@ -76,8 +75,7 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`company` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-insert into  `stock_market_chart`.`company`(cp_id,cp_code,cp_name,cp_turnover,cp_ceo,cp_board_of_directors,cp_listed,
-cp_se_id,cp_brief) values(1,500112,"SBI",112333,"JOHN","ABNCDFGGGG",TRUE,1,"NICE COMPANY");
+
 -- -----------------------------------------------------
 -- Table `stock_market_chart`.`stock_price`
 -- -----------------------------------------------------
@@ -118,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`sector` (
   PRIMARY KEY (`se_id`))
 ENGINE = InnoDB;
 
-INSERT INTO `stock_market_chart`.`sector`(se_id,se_sector_name,se_brief) values(1,"IT","software and tech");
+
 -- -----------------------------------------------------
 -- Table `stock_market_chart`.`company`
 -- -----------------------------------------------------
@@ -160,3 +158,28 @@ CREATE TABLE IF NOT EXISTS `stock_market_chart`.`confirm_email` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `stock_market_chart`.`board_members` (
+  `bm_id` INT NOT NULL AUTO_INCREMENT,
+  `bm_cp_name` VARCHAR(30) NOT NULL,
+  `bm_cp_id` INT NOT NULL,
+  PRIMARY KEY (`bm_id`),
+  INDEX `bm_cp_fk_idx` (`bm_cp_id` ASC),
+   CONSTRAINT `bm_cp_fk`
+    FOREIGN KEY (`bm_cp_id`)
+    REFERENCES `stock_market`.`company` (`cp_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  );
+
+INSERT INTO `stock_market_chart`.`role` (`ro_id`, `ro_name`) VALUES ('1', 'ADMIN');
+INSERT INTO `stock_market_chart`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'USER');
+
+INSERT INTO `stock_market_chart`.`user` (`us_id`, `us_user_name`, `us_password`, `us_email`, `us_mobile_number`, `us_confirmed`) VALUES ('1', 'admin', '$2a$10$R/lZJuT9skteNmAku9Y7aeutxbOKstD5xE5bHOf74M2PHZipyt3yK', 'a@gmail.com', '7894561230', '1');
+
+INSERT INTO `stock_market_chart`.`user_role` (`ur_id`, `ur_us_id`, `ur_ro_id`) VALUES ('1', '1', '1');
+
+INSERT INTO `stock_market_chart`.`sector` (`se_id`, `se_sector_name`, `se_brief`) VALUES ('1', 'Banking', 'banks sector');
+INSERT INTO `stock_market_chart`.`company` (`cp_id`, `cp_code`, `cp_name`, `cp_turnover`, `cp_ceo`, `cp_listed`, `cp_se_id`, `cp_brief`) VALUES ('1', '500112', 'BOI', '54685', 'GURU', '1', '1', 'bank of India');
+INSERT INTO `stock_market_chart`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_brief`, `ex_address`, `ex_remarks`) VALUES ('1', 'BSE', 'british', 'kuruku theru', 'nil');
+INSERT INTO `stock_market_chart`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('1', '1', '1');

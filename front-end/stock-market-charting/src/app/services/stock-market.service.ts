@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
+
+import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
-import { AuthenticationService } from './authentication.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImportExcelService {
+export class StockMarketService {
 
-  constructor(private httpClient:HttpClient,private authService:AuthenticationService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthenticationService) { }
+uploadFile(formData){
 
-showSummary(){
-  let url = environment.baseUrl + "/excelupload-service/stock-market-charting/summary"
+  let url = environment.baseUrl + "/excelupload-service/stock-market-charting/upload"
   let token = 'Bearer ' + this.authService.getToken();
   const httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +20,7 @@ showSummary(){
       'Authorization': token
     })
   };
-  return this.httpClient.get(url,httpOptions)
+  return this.httpClient.post(url,formData);
 }
 
 }
