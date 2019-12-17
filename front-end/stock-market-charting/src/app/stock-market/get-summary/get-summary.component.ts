@@ -9,6 +9,7 @@ import { ImportExcelService } from 'src/app/services/import-excel.service';
 })
 export class GetSummaryComponent implements OnInit {
   summary:any;
+  summary1:Summary;
   constructor(private importExcel:ImportExcelService) { }
 
   ngOnInit() {
@@ -18,8 +19,9 @@ export class GetSummaryComponent implements OnInit {
     maxDate:new Date(),
     minDate: new Date()
   }
-this.importExcel.showSummary().subscribe((response)=>{this.summary=response;})
-
+  
+this.importExcel.showSummary().subscribe((response:any)=>{this.summary=response})
+  
   }
 
 

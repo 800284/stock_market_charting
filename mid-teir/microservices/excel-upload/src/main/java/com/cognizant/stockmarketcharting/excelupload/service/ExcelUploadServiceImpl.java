@@ -32,7 +32,8 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	public void uploadFileService(String filePath) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		
+			Date minDate=null;
+			Date maxDate=null;
 		 FileInputStream inputStream = new FileInputStream(filePath);
 		 
 		
@@ -73,6 +74,18 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                        break;
 	                    case 3:
 	                    	Date date = nextCell.getDateCellValue();
+	                    	if(minDate==null) {
+	                    	minDate = date;}
+	                    	if(maxDate==null) {
+		                    	maxDate = date;}
+	                    	if(date.compareTo(minDate)<0) {
+	                    		minDate=date;
+	                    		
+	                    	}
+	                    	if(date.compareTo(maxDate)>0) {
+	                    		maxDate=date;
+	                    		
+	                    	}
 	                    	stockPrice.setDate(date);
 	                    	System.out.println("=================>" + date);
 	                    	break;
@@ -99,8 +112,8 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 		
 		excelUploadDTO.setNoOfRecords(count-1);
 		excelUploadDTO.setCompanyName(companyRepository.findByCompanyCode(companyCodeNew).getName());
-		excelUploadDTO.setMaxDate(excelUploadRepository.maxDate());
-		excelUploadDTO.setMinDate(excelUploadRepository.minDate());
+		excelUploadDTO.setMaxDate(maxDate);
+		excelUploadDTO.setMinDate(minDate);
 		
 		System.out.println(excelUploadDTO);
 		

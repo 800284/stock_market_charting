@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImportExcelComponent } from './stock-market/import-excel/import-excel.component';
 import { HomePageComponent } from './stock-market/home-page/home-page.component';
 import { GetSummaryComponent } from './stock-market/get-summary/get-summary.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { GetSummaryComponent } from './stock-market/get-summary/get-summary.comp
     ImportExcelComponent,
     HomePageComponent,
     GetSummaryComponent,
+    HeaderComponent,
 
   ],
   imports: [
