@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
   showTips() {
     this.router.navigate(['/tips']);
   }
-  viewQuestions(username) {
-    this.router.navigate(['/view-questions']);
+  updateProfile() {
+    this.router.navigate(['/update-profile']);
   }
 
 }

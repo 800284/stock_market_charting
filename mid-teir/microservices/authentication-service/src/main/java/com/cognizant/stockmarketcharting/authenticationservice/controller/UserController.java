@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,7 @@ import com.cognizant.stockmarketcharting.authenticationservice.repository.UserRe
 import com.cognizant.stockmarketcharting.authenticationservice.security.AppUserDetailsService;
 import com.cognizant.stockmarketcharting.authenticationservice.service.EmailService;
 import com.cognizant.stockmarketcharting.authenticationservice.service.UserConfirmationService;
+import com.cognizant.stockmarketcharting.authenticationservice.service.UserService;
 
 
 
@@ -45,7 +47,8 @@ public class UserController {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder; 
-	
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	UserConfirmationService userConfirmationService;
@@ -71,5 +74,15 @@ public class UserController {
 	@GetMapping("/confirm/{token}")
 	public void confirmMail(@PathVariable String token) {
 		userConfirmationService.confirmMailAddress(token);
+	}
+	
+	@PutMapping("/update-user")
+	public void updateDetails(@RequestBody User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		userService.updateDetails(user);
+	}
+	@GetMapping("/get-user/{username}")
+	public User getUser(@PathVariable String username) {
+		return userRepository.findByUsername(username);
 	}
 }

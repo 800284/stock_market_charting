@@ -12,6 +12,7 @@ import { SignupComponent } from './site/signup/signup.component';
 import { LoginComponent } from './site/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupSuccessComponent } from './site/signup-success/signup-success.component';
+import { UserUpdateComponent } from './site/user-update/user-update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { SignupSuccessComponent } from './site/signup-success/signup-success.com
     SignupComponent,
     LoginComponent,
     SignupSuccessComponent,
+    UserUpdateComponent,
 
   ],
   imports: [

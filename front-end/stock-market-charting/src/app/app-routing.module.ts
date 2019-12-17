@@ -5,6 +5,7 @@ import { ImportExcelComponent } from './stock-market/import-excel/import-excel.c
 import { SignupComponent } from './site/signup/signup.component';
 import { LoginComponent } from './site/login/login.component';
 import { SignupSuccessComponent } from './site/signup-success/signup-success.component';
+import { UserUpdateComponent } from './site/user-update/user-update.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {path:"register",component:SignupComponent},
   {path:"login",component:LoginComponent},
-  {path:"signup-success",component:SignupSuccessComponent}
+  {path:"signup-success",component:SignupSuccessComponent},
+  {path:"update-profile",component:UserUpdateComponent}
 
 
 

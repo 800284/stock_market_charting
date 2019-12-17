@@ -30,7 +30,7 @@
             </span>
             <span *ngIf="isLoggedIn() && getUserName() !='admin'">
                 <li class="nav-item"><button class="nav-link m-2 text-danger btn btn-link "
-                        (click)="viewQuestions(getUserName())">My Questions</button></li>
+                        (click)="updateProfile()">Update Profile</button></li>
             </span>
             <span *ngIf="isLoggedIn() && getUserName() !='admin'">
                 <li class="nav-item"><button [routerLink]="['/notifications','true']"
