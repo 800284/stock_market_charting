@@ -1,8 +1,9 @@
+<div  *ngIf="!uploadFlag">
   <input type="file" 
 (change)="fileChange($event)"
 placeholder="Upload file" 
 accept=".xlsx" class="btn btn-primary ">
-
+</div>
 
 <div  *ngIf="uploadFlag">
   <app-get-summary></app-get-summary>
