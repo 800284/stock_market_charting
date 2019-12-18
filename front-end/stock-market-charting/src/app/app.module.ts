@@ -16,6 +16,7 @@ import { UserUpdateComponent } from './site/user-update/user-update.component';
 import { ViewCompaniesComponent } from './stock-market/view-companies/view-companies.component';
 import { CompanyComponent } from './stock-market/company/company.component';
 import { ChartComponent } from './stock-market/chart/chart.component';
+import { WelcomeUserComponent } from './stock-market/welcome-user/welcome-user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ChartComponent } from './stock-market/chart/chart.component';
     ViewCompaniesComponent,
     CompanyComponent,
     ChartComponent,
+    WelcomeUserComponent,
 
 
   ],

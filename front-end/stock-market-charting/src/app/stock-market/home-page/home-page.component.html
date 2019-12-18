@@ -60,26 +60,44 @@
 
 <div *ngIf="this.authService.isLogin()">
   <div *ngIf="this.authService.getLoggedinUser()=='admin'">
+      <div class="container p-3 mt-3 mb-3">
+          <div class="card shadow-lg rounded-lg p-2">
+            <div class="row">
+              <div class="col">
 <a  [routerLink]="['/home', {outlets: {'customoutlet': ['import-excel']}}]">Import excel</a>
-
-<div>
-  <router-outlet name="customoutlet"></router-outlet>
 </div>
+
+</div>
+</div>
+</div>
+<div>
+    <router-outlet name="customoutlet"></router-outlet>
+  </div>
 </div>
 </div>
 
 <div *ngIf="this.authService.isLogin()">
     <div *ngIf="this.authService.getLoggedinUser()!='admin'">
+      <div class="container p-3 mt-3 mb-3">
+        <div class="card shadow-lg rounded-lg p-2">
+           <div class="row"> 
+             <div class="col-6 justify-content-center d-flex">
         <a  [routerLink]="['/home', {outlets: {'customoutletuser': ['view-companies']}}]">View Companies</a>
 
-        <div>
-          <router-outlet name="customoutletuser"></router-outlet>
-        </div>
+       
+      </div>
+      <div class="col-6 justify-content-center d-flex">
         <a  [routerLink]="['/home', {outlets: {'customoutletuser': ['view-chart']}}]">View Chart</a>
 
-        <div>
-          <router-outlet name="customoutletuser"></router-outlet>
+        
+      </div>
+      </div>
+    </div>
         </div>
     </div>
+    <div class="">
+        <router-outlet name="customoutletuser"></router-outlet>
+      </div>
+  
   </div>
-
+  

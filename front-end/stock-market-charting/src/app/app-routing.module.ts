@@ -8,6 +8,7 @@ import { SignupSuccessComponent } from './site/signup-success/signup-success.com
 import { UserUpdateComponent } from './site/user-update/user-update.component';
 import { ViewCompaniesComponent } from './stock-market/view-companies/view-companies.component';
 import { ChartComponent } from './stock-market/chart/chart.component';
+import { WelcomeUserComponent } from './stock-market/welcome-user/welcome-user.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -24,6 +25,7 @@ const routes: Routes = [
         component: ImportExcelComponent,
         outlet: "customoutlet"
       },
+      {path:"",component:WelcomeUserComponent,outlet:"customoutletuser"},
       { path: "view-companies", component: ViewCompaniesComponent, outlet: "customoutletuser" },
       { path: "view-chart", component: ChartComponent, outlet: "customoutletuser" }
     ]

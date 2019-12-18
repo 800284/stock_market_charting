@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import * as FileSaver from 'file-saver';
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
+import HC_exportData from 'highcharts/modules/export-data';
+HC_exportData(Highcharts)
+
 import { Company } from '../model/Company';
 import { StockMarketService } from 'src/app/services/stock-market.service';
 @Component({
@@ -14,7 +20,8 @@ export class ChartComponent implements OnInit {
   company2:Company;
   dataLoaded: Promise<boolean>;
   stockData: any[];
-  chart:Highcharts.Chart;
+  chart:Highcharts.Chart
+  abc:Highcharts.LangOptions;
   public options: any = {
     chart: {
       type: 'line',
@@ -39,7 +46,8 @@ export class ChartComponent implements OnInit {
           return Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.value);
         }
       }
-    }
+    },
+    
   }
   constructor(private stockMarketService:StockMarketService) { }
 
@@ -82,5 +90,16 @@ export class ChartComponent implements OnInit {
         this.chart.redraw()
       })
     })
+}
+ downlaodCsv() {
+ this.chart.getCSV();
+ this.saveAsExcelFile(this.chart.getCSV(),"NewFile");
+}
+
+private saveAsExcelFile(buffer: any, fileName: string): void {
+  const data: Blob = new Blob([buffer], {
+    type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
 }
 }
