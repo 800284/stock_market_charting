@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Summary } from './Summary';
-import { ImportExcelService } from 'src/app/services/import-excel.service';
+import { StockMarketService } from 'src/app/services/stock-market.service';
 
 @Component({
   selector: 'app-get-summary',
@@ -10,7 +10,7 @@ import { ImportExcelService } from 'src/app/services/import-excel.service';
 export class GetSummaryComponent implements OnInit {
   summary:any;
   summary1:Summary;
-  constructor(private importExcel:ImportExcelService) { }
+  constructor(private importExcel:StockMarketService) { }
 
   ngOnInit() {
   this.summary={

@@ -25,7 +25,7 @@ export class UserService {
         'Authorization': token
       })
     };
-    this.httpClient.put(url,user,httpOptions);
+    return this.httpClient.put(url,user,httpOptions);
   }
 
   getUser(userName:String){

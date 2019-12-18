@@ -1,0 +1,31 @@
+<div class="container">
+<div class="card shadow-lg rounded-lg p-5 bg-primary">
+  <h1 class="ml-3 text-white">Search Company</h1>
+<div class="input-group container">
+   
+    <input
+            type="text" 
+            class="form-control" 
+            placeholder="Enter Company code or name" 
+            (keyup)="searchCompany()"
+            [(ngModel)]="search"
+            name="search"/>
+</div>
+</div>
+</div>
+<div class="container mt-2" *ngIf="emptyFlag">
+
+<div class="alert alert-warning p-4" >
+    <strong>
+        No Company Present.
+    </strong>
+</div>
+
+</div>
+  <div class="row container-fluid ml-1">
+    
+    <div *ngFor="let company of companyList" class="col-sm-12 col-md-12 col-lg-12 mt-3">
+   
+      <app-company [company]="company"  ></app-company>
+    </div>
+  </div>

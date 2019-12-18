@@ -13,6 +13,7 @@ export class UserUpdateComponent implements OnInit {
   constructor(private userService:UserService,private authService:AuthenticationService) { }
   checkpass:boolean=false;
  signupForm:any;
+ updateSuccess:boolean=false;
   ngOnInit() {
 
     this.user = {
@@ -30,7 +31,7 @@ export class UserUpdateComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]),
       confirmPassword: new FormControl('', [Validators.required]),
       contactNo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      emailId: new FormControl(''),
+      emailId: new FormControl({value:'',disabled:true}),
     });
 
     this.userService.getUser(this.authService.getLoggedinUser()).subscribe((response)=>{this.user=response;
@@ -50,5 +51,12 @@ export class UserUpdateComponent implements OnInit {
     } else {
       this.checkpass = false;
     }
+  }
+  updateUser(signupForm){
+  
+    this.user.password = signupForm.value.password;
+    this.user.confirmPassword = signupForm.value.confirmPassword;
+    this.user.contactNo = signupForm.value.contactNo;
+    this.userService.updateUser(this.user).subscribe((response)=>{this.updateSuccess=true;});
   }
 }

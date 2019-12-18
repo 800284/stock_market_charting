@@ -1,11 +1,15 @@
 <div class="container">
-    <section class="border shadow-lg rounded-lg section-margin">
-        <h1 class="mt-5 ml-3 text-alignment text-danger">Register to Donate</h1>
-        <form [formGroup]="signupForm" (ngSubmit)="userAdd(signupForm)" novalidate>
-            <section class="border border-danger ml-2 mr-2 pb-4">
-                <div>
-                    <h4 class="ml-3 text-alignment text-danger">Login Details</h4>
-                </div>
+        <section class="border shadow-lg bg-primary rounded-lg mt-5">
+                <h1 class="mt-1 text-alignment text-white font-italic font-family">Update Profile</h1>
+        </section>
+        <div *ngIf="updateSuccess" class="alert alert-success mt-2">
+                User Updated sucessfully
+        </div>
+    <section class="border shadow-lg rounded-lg section-margin" *ngIf="!updateSuccess">
+        
+        <form [formGroup]="signupForm" (ngSubmit)="updateUser(signupForm)" novalidate>
+        
+                
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-lg-6  mt-4">
                         <label for="username">Username*</label>
@@ -42,7 +46,7 @@
                     <div class="col-sm-12 col-md-6  mt-4">
                         <label for="password">Password*</label>
                         <span *ngIf="signupForm.get('password').touched;else elseBlockPassword">
-                            <input type="password" class="form-control " placeholder="Enter Password" name="password"
+                            <input type="password" class="form-control " placeholder="Enter New Password" name="password"
                                 formControlName="password" id="password" [ngClass]="{
                                 'border border-danger': signupForm.get('password').errors?.required || signupForm.get('password').errors?.minlength || signupForm.get('password').errors?.maxlength, 
                                 '': !signupForm.get('password').errors?.required || !signupForm.get('password').errors?.minlength || !signupForm.get('password').errors?.maxlength
@@ -60,14 +64,14 @@
                             </div>
                         </span>
                         <ng-template #elseBlockPassword>
-                            <input type="password" class="form-control " placeholder="Enter Password" name="password"
+                            <input type="password" class="form-control " placeholder="Enter New Password" name="password"
                                 formControlName="password" id="password" />
                         </ng-template>
                     </div>
                     <div class="col-sm-12 col-md-6 mt-4">
                         <label for="cnfpassword">Confirm Password*</label>
                         <span *ngIf="signupForm.get('confirmPassword').touched;else elseBlockConfirmPassword">
-                            <input type="password" class="form-control" placeholder="Confirm Password" name="password"
+                            <input type="password" class="form-control" placeholder="Confirm New Password" name="password"
                                 formControlName="confirmPassword" id="cnfpassword" (keyup)="checkIfMatchingPasswords()"
                                 [ngClass]="{
                                 'border border-danger': signupForm.get('confirmPassword').errors?.required, 
@@ -84,15 +88,13 @@
 
                         </span>
                         <ng-template #elseBlockConfirmPassword>
-                            <input type="password" class="form-control" placeholder="Confirm Password" name="password"
+                            <input type="password" class="form-control" placeholder="Confirm New Password" name="password"
                                 formControlName="confirmPassword" id="cnfpassword"
                                 (keyup)="checkIfMatchingPasswords()" />
                         </ng-template>
                     </div>
                 </div>
-            </section>
-            <section class="border border-danger ml-2 mr-2 pb-4 mt-2">
-                <h4 class="text-alignment text-danger">Personal Details</h4>
+         
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-md-6  mt-4">
                         <label for="contactnumber">Contact Number*</label>
@@ -144,11 +146,11 @@
                 </div>
               
 
-            </section>
+            
             <div class="form-row mt-3 mb-5 ml-3">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-danger mt-2 "
-                        [disabled]="!signupForm.valid || bloodGroupEmpty  || stateEmpty ||!checkpass || areaClick && areaEmpty || areaEmpty || userPresent">Signup</button>
+                    <button type="submit" class="btn btn-primary mt-2 "
+                        [disabled]="!signupForm.valid  ||!checkpass  ">Update</button>
                 </div>
             </div>
         </form>

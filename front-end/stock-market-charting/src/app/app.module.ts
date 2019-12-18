@@ -13,7 +13,10 @@ import { LoginComponent } from './site/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupSuccessComponent } from './site/signup-success/signup-success.component';
 import { UserUpdateComponent } from './site/user-update/user-update.component';
-import { SearchCompaniesComponent } from './user/search-companies/search-companies.component';
+import { ViewCompaniesComponent } from './stock-market/view-companies/view-companies.component';
+import { CompanyComponent } from './stock-market/company/company.component';
+import { ChartComponent } from './stock-market/chart/chart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,10 @@ import { SearchCompaniesComponent } from './user/search-companies/search-compani
     LoginComponent,
     SignupSuccessComponent,
     UserUpdateComponent,
-    SearchCompaniesComponent,
+    ViewCompaniesComponent,
+    CompanyComponent,
+    ChartComponent,
+
 
   ],
   imports: [

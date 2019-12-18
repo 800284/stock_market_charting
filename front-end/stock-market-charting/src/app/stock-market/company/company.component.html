@@ -1,0 +1,60 @@
+<div class="container p-1">
+   
+   
+  <div class="card shadow-lg rounded-lg">
+    <div class="card-body">
+      <div class="form-row">
+         
+        <div class="col-sm-12 col-lg-12 card-title">
+          <h1>{{company.name}}</h1>
+        </div>
+
+        <div class="col-sm-12 col-lg-12 d-flex">
+          <h5 class="text-success mr-1"><i class="fa fa-dollar"></i></h5>
+          <h5 class="text-success font-weight-bold font-italic">Annual Turn over: </h5>
+          <h5 class="text-success">$</h5>
+          <h5 class="text-success ml-1"> {{company.turnover | number}}</h5>
+
+          <h5 class="ml-auto text-info">Sector : {{company.sector.sectorName}}</h5>
+
+        </div>
+        <div class="col-sm-12 col-lg-12 d-flex">
+          <h5> <i class="fa fa-user-circle mr-1"></i></h5>
+          <h5 class="font-weight-bold font-italic">CEO:</h5>
+          <h5 class="ml-1"> {{company.ceo}}</h5>
+
+        </div>
+
+        <div class="col-sm-12 col-lg-12 d-flex">
+          <h5 class="mr-1"><i class="fa fa-file-text"></i></h5>
+          <h5 class="font-weight-bold font-italic">About :
+          </h5>
+          <h5 class="ml-1">{{company.aboutCompany}}</h5>
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 col-lg-6 text-alignment m-auto ">
+          <h5><i class='fas fa-chart-area'></i>Stocks:</h5>
+
+          <div *ngFor="let stock of company.stockExchanges " class="d-flex">
+            <h5 class="m-auto">Name = {{stock.name}} Price = {{stock.brief}}</h5>
+
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-6">
+          <div class="text-alignment ">
+            <h5 class="m-auto">
+              <i class='fas fa-users '></i>Board members
+              <ul class="list-unstyled">
+                <li *ngFor="let director of company.boardOfDirectorsList" class="ml-2">
+                  {{director.name}}
+                </li>
+              </ul>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
