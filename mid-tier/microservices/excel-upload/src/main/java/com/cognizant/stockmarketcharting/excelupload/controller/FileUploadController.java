@@ -10,6 +10,7 @@ import java.util.Iterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,14 +33,14 @@ public class FileUploadController {
         Iterator<String> itr = request.getFileNames();
         MultipartFile file = request.getFile(itr.next());
         String fileName = file.getOriginalFilename();
-        File dir = new File("C:\\Users\\Admin\\Documents");
+        File dir = new File("/home/zain/Documents");
         if (dir.isDirectory()) {
           File serverFile = new File(dir, fileName);
           BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
           stream.write(file.getBytes());
           stream.close();
         }
-        excelUploadService.uploadFileService(dir+"\\"+fileName);
+        excelUploadService.uploadFileService(dir+"/"+fileName);
       }
 	
 	@GetMapping("/summary")

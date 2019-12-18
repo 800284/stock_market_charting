@@ -52,7 +52,7 @@ article {
     }
 }
 .section-margin {
-    margin-top: 12%;
+     margin-top: 2%; 
     margin-bottom: 10%;
  }
  .notify-requirement{
@@ -60,7 +60,7 @@ article {
     
     height: 200px;
     align-self: center;
-    overflow-y: scroll;
+   
     overflow-x: scroll;
 }
 .alert-box-requirement{
@@ -90,15 +90,18 @@ margin-top:10%
   
   /* Track */
   .test-scroll::-webkit-scrollbar-track {
-    background: #d3d3d3; 
+    background: #FFFFFF; 
   }
    
   /* Handle */
   .test-scroll::-webkit-scrollbar-thumb {
-    background: #d3d3d3; 
+    background: #FFFFFF; 
   }
   
   /* Handle on hover */
   .test-scroll::-webkit-scrollbar-thumb:hover {
-    background: #d3d3d3; 
+    background: #FFFFFF; 
   }
+  .font-family{
+    font-family:"Courier New"
+}

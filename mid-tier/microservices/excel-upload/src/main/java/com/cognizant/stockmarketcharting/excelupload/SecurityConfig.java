@@ -12,7 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.cognizant.stockmarketcharting.excelupload.security.AppUserDetailsService;
 import com.cognizant.stockmarketcharting.excelupload.security.JwtAuthorizationFilter;
+
 
 
 @Configuration
@@ -20,10 +22,18 @@ import com.cognizant.stockmarketcharting.excelupload.security.JwtAuthorizationFi
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityConfig.class);
 
-	
+	@Autowired
+	AppUserDetailsService appUserDetailsService;
 
-	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(appUserDetailsService).passwordEncoder(passwordEncoder());
+	}
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -31,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.cors();
 		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests()
 		.antMatchers("/stock-market-charting/upload").permitAll()
-		.antMatchers("/stock-market-charting/summary").permitAll()
 				.anyRequest().authenticated().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		LOGGER.info("End");
 	}

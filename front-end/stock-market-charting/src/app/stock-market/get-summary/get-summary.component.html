@@ -1,9 +1,11 @@
-<div class="container">
+<!-- <div class="container">
   <h1>Summary</h1>
 <div class="row">
   No Of Records : {{summary.noOfRecords}}
 </div>
-
+<div class="row">
+    StockExchange : {{summary.stockExchange}}
+  </div>
 <div class="row">
     Company : {{summary.companyName}}
   </div>
@@ -14,4 +16,27 @@
         To Date : {{summary.maxDate | date:'yyyy-MM-dd'}}
       </div>
 
+</div> -->
+<div class="container notify-requirement test-scroll">
+  <h1 class="text-alignment text-primary font-family"> Summary</h1>
+<table class="table table-hover">
+  <thead class="bg-primary text-white">
+    <tr>
+      <th scope="col">No Of Records inserted</th>
+      <th scope="col">Stock Exchange</th>
+      <th scope="col">Company Name</th>
+      <th scope="col">From Date</th>
+      <th scope="col">To Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{summary.noOfRecords}}</td>
+      <td>{{summary.stockExchange}}</td>
+      <td>{{summary.companyName}}</td>
+      <td>{{summary.minDate | date:'yyyy-MM-dd'}}</td>
+      <td>{{summary.maxDate | date:'yyyy-MM-dd'}}</td>
+    </tr>
+  </tbody>
+</table>
 </div>

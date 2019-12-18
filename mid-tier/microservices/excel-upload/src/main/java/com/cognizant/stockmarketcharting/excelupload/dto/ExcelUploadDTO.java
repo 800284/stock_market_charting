@@ -5,13 +5,22 @@ import java.util.Date;
 public class ExcelUploadDTO {
 	private int noOfRecords;
 	private String companyName;
+	private String stockExchange;
+	public String getStockExchange() {
+		return stockExchange;
+	}
+	public void setStockExchange(String stockExchange) {
+		this.stockExchange = stockExchange;
+	}
 	private Date minDate;
 	private Date maxDate;
 	public ExcelUploadDTO(){}
-	public ExcelUploadDTO(int noOfRecords, String companyName, Date minDate, Date maxDate) {
+
+	public ExcelUploadDTO(int noOfRecords, String companyName, String stockExchange, Date minDate, Date maxDate) {
 		super();
 		this.noOfRecords = noOfRecords;
 		this.companyName = companyName;
+		this.stockExchange = stockExchange;
 		this.minDate = minDate;
 		this.maxDate = maxDate;
 	}

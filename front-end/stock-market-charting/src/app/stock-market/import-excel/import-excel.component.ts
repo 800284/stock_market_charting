@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { StockMarketService } from 'src/app/services/stock-market.service';
 
 @Component({
   selector: 'app-import-excel',
@@ -8,9 +9,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ImportExcelComponent implements OnInit {
   uploadFlag:boolean=false;
-  apiEndPoint = "http://localhost:8087/stock-market-charting/upload";
+  
 
-  constructor(private http:HttpClient) {
+  constructor(private stockService:StockMarketService) {
   }
 
   ngOnInit(){}
@@ -21,13 +22,7 @@ export class ImportExcelComponent implements OnInit {
       let file: File = fileList[0];
       let formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
-      let headers = new Headers();
-      headers.append('Accept', 'application/json');
-      this.http.post(this.apiEndPoint, formData)
-        .subscribe(
-              (response)=>this.uploadFlag =true
-        
-        )
+      this.stockService.uploadFile(formData).subscribe((response)=>this.uploadFlag=true);
     }
   }
 }

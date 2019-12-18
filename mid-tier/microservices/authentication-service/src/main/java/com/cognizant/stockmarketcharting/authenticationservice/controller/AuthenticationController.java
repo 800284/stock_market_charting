@@ -7,12 +7,16 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cognizant.stockmarketcharting.authenticationservice.model.User;
+import com.cognizant.stockmarketcharting.authenticationservice.repository.UserRepository;
 
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -23,7 +27,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class AuthenticationController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
-
+	@Autowired
+	UserRepository userRepository;
 	@GetMapping("/authenticate")
 	public Map<String, String> authenticate(@RequestHeader("Authorization") String authHeader) {
 		LOGGER.info("START");
@@ -37,7 +42,8 @@ public class AuthenticationController {
 		map.put("token", generateJwt(getUser(authHeader)));
 		map.put("role", role);
 		map.put("user", user);
-
+		User userObj = userRepository.findByUsername(user);
+		map.put("confirm",""+userObj.isConfirmation());
 		LOGGER.debug("map: {}", map);
 		LOGGER.info("END");
 		return map;

@@ -85,4 +85,8 @@ public class UserController {
 	public User getUser(@PathVariable String username) {
 		return userRepository.findByUsername(username);
 	}
+	@GetMapping("/{username}")
+	public boolean getUserStatus(@PathVariable String username) {
+		return userRepository.findByUsername(username).isConfirmation();
+	}
 }

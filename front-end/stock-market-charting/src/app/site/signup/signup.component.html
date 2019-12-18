@@ -1,11 +1,12 @@
 <div class="container">
+        <section class="border shadow-lg bg-primary rounded-lg mt-5">
+                <h1 class="mt-1 text-alignment text-white font-italic font-family">Register</h1>
+        </section>
     <section class="border shadow-lg rounded-lg section-margin">
-        <h1 class="mt-5 ml-3 text-alignment text-danger">Register to Donate</h1>
+        
         <form [formGroup]="signupForm" (ngSubmit)="userAdd(signupForm)" novalidate>
-            <section class="border border-danger ml-2 mr-2 pb-4">
-                <div>
-                    <h4 class="ml-3 text-alignment text-danger">Login Details</h4>
-                </div>
+        
+                
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-lg-6  mt-4">
                         <label for="username">Username*</label>
@@ -90,9 +91,7 @@
                         </ng-template>
                     </div>
                 </div>
-            </section>
-            <section class="border border-danger ml-2 mr-2 pb-4 mt-2">
-                <h4 class="text-alignment text-danger">Personal Details</h4>
+         
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-md-6  mt-4">
                         <label for="contactnumber">Contact Number*</label>
@@ -144,10 +143,10 @@
                 </div>
               
 
-            </section>
+            
             <div class="form-row mt-3 mb-5 ml-3">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-danger mt-2 "
+                    <button type="submit" class="btn btn-primary mt-2 "
                         [disabled]="!signupForm.valid || bloodGroupEmpty  || stateEmpty ||!checkpass || areaClick && areaEmpty || areaEmpty || userPresent">Signup</button>
                 </div>
             </div>

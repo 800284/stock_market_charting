@@ -39,4 +39,9 @@ export class UserService {
     };
     return this.httpClient.get(url,httpOptions);
   }
+  getUserStatus(username:String){
+    let url = environment.baseUrl + "/authentication-service/stock-market-charting/users/" + username;
+    return this.httpClient.get(url);
+  
+  }
 }
