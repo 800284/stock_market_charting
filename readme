@@ -1,7 +1,7 @@
-import these library in angular :
+import this library in angular :
 
 npm install file-saver --save
-npm install xlsx --save
+
 
 add these in index.html:
 

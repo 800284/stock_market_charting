@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import * as FileSaver from 'file-saver';
-const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-const EXCEL_EXTENSION = '.xlsx';
+const EXTENSION = '.csv';
 import HC_exportData from 'highcharts/modules/export-data';
 HC_exportData(Highcharts)
 
@@ -98,8 +97,8 @@ export class ChartComponent implements OnInit {
 
 private saveAsExcelFile(buffer: any, fileName: string): void {
   const data: Blob = new Blob([buffer], {
-    type: EXCEL_TYPE
+    type: "text/csv"
   });
-  FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXTENSION);
 }
 }
