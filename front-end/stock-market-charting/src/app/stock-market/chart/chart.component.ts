@@ -19,6 +19,7 @@ export class ChartComponent implements OnInit {
   company2:Company;
   dataLoaded: Promise<boolean>;
   stockData: any[];
+  clickFlag:boolean;
   chart:Highcharts.Chart
   abc:Highcharts.LangOptions;
   public options: any = {
@@ -27,7 +28,7 @@ export class ChartComponent implements OnInit {
       height: 700
     },
     title: {
-      text: 'Stock Price'
+      text: 'Select Company Code to Draw Chart'
     },
     credits: {
       enabled: false
@@ -53,16 +54,16 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
 
     this.stockMarketService.getCompanies().subscribe((response: Company[]) => {
-      console.log(response)
+      
       this.companies = response;
       this.dataLoaded = Promise.resolve(true);
       this.chart=Highcharts.chart('container', this.options);
     })
   }
   filterSelectedData(companyCode: string) {
-    console.log(companyCode)
+    this.clickFlag=true;
+    this.options.title.text = "Chart for the company with code " + companyCode;
     this.stockMarketService.getStockDetails(companyCode).subscribe((response: any) => {
-      console.log(response)
       this.stockData = response;
       let data: any[] = [];
       this.stockData.forEach((item) => {
@@ -90,7 +91,7 @@ export class ChartComponent implements OnInit {
       })
     })
 }
- downlaodCsv() {
+ downloadCsv() {
  this.chart.getCSV();
  this.saveAsExcelFile(this.chart.getCSV(),"NewFile");
 }

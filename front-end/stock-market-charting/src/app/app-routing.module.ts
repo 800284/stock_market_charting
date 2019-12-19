@@ -9,6 +9,7 @@ import { UserUpdateComponent } from './site/user-update/user-update.component';
 import { ViewCompaniesComponent } from './stock-market/view-companies/view-companies.component';
 import { ChartComponent } from './stock-market/chart/chart.component';
 import { WelcomeUserComponent } from './stock-market/welcome-user/welcome-user.component';
+import { CompareChartComponent } from './stock-market/compare-chart/compare-chart.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -17,7 +18,7 @@ const routes: Routes = [
     path: "home", component: HomePageComponent, children: [
       {
         path: "",
-        component: ImportExcelComponent,
+        component: WelcomeUserComponent,
         outlet: "customoutlet"
       },
       {
@@ -25,9 +26,12 @@ const routes: Routes = [
         component: ImportExcelComponent,
         outlet: "customoutlet"
       },
+      { path: "view-companies", component: ViewCompaniesComponent, outlet: "customoutlet" },
+     
       {path:"",component:WelcomeUserComponent,outlet:"customoutletuser"},
       { path: "view-companies", component: ViewCompaniesComponent, outlet: "customoutletuser" },
-      { path: "view-chart", component: ChartComponent, outlet: "customoutletuser" }
+      { path: "view-chart", component: ChartComponent, outlet: "customoutletuser" },
+      { path: "compare-chart", component: CompareChartComponent, outlet: "customoutletuser" }
     ]
   },
   { path: "register", component: SignupComponent },

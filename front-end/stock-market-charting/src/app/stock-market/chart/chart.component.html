@@ -11,8 +11,9 @@
         </div>
     </div>
 </div>
-
+<div class="container">
 <div id="container"></div>
-<div class="container justify-content-center d-flex"> 
-<button (click)="downlaodCsv()" class="btn btn-primary text-alignment ">Export Data</button>
+</div>
+<div class="container justify-content-center d-flex"  *ngIf="clickFlag"> 
+<button (click)="downloadCsv()" class="btn btn-primary text-alignment ">Export Data</button>
 </div>
