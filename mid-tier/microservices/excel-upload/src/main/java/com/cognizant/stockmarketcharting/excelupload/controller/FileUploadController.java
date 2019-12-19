@@ -25,30 +25,26 @@ public class FileUploadController {
 
 	@Autowired
 	ExcelUploadService excelUploadService;
-	
-	
-	@PostMapping("/upload")
-	 public void UploadFile(MultipartHttpServletRequest request) throws IOException {
 
-        Iterator<String> itr = request.getFileNames();
-        MultipartFile file = request.getFile(itr.next());
-        String fileName = file.getOriginalFilename();
-        File dir = new File("C:\\Users\\Admin\\Documents");
-        if (dir.isDirectory()) {
-          File serverFile = new File(dir, fileName);
-          BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-          stream.write(file.getBytes());
-          stream.close();
-        }
-        excelUploadService.uploadFileService(dir+"\\"+fileName);
-      }
-	
+	@PostMapping("/upload")
+	public void UploadFile(MultipartHttpServletRequest request) throws IOException {
+
+		Iterator<String> itr = request.getFileNames();
+		MultipartFile file = request.getFile(itr.next());
+		String fileName = file.getOriginalFilename();
+		File dir = new File("C:\\Users\\Admin\\Documents");
+		if (dir.isDirectory()) {
+			File serverFile = new File(dir, fileName);
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+			stream.write(file.getBytes());
+			stream.close();
+		}
+		excelUploadService.uploadFileService(dir + "\\" + fileName);
+	}
+
 	@GetMapping("/summary")
 	public ExcelUploadDTO getSummary() {
 		return excelUploadService.getSummary();
 	}
-	
-	
-	
-	
+
 }

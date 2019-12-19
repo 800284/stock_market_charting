@@ -11,7 +11,7 @@ import com.cognizant.stockmarketcharting.authenticationservice.model.UserConfirm
 public interface UserConfirmationRepository extends JpaRepository<UserConfirmation, String> {
 
 	public UserConfirmation findByToken(String token);
-	
-	@Query(value="insert into confirmation_table values(default,:token,:userId);",nativeQuery = true)
+
+	@Query(value = "insert into confirmation_table values(default,:token,:userId);", nativeQuery = true)
 	public void saveDetails(@Param("token") String token, @Param("userId") String userId);
 }

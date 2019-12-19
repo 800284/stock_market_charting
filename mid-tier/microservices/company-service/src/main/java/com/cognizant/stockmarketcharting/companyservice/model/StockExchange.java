@@ -1,16 +1,10 @@
 package com.cognizant.stockmarketcharting.companyservice.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +13,7 @@ public class StockExchange {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ex_id")
+	@Column(name = "ex_id")
 	private int id;
 	@Column(name = "ex_stock_exchange")
 	private String name;
@@ -29,14 +23,11 @@ public class StockExchange {
 	private String address;
 	@Column(name = "ex_remarks")
 	private String remarks;
-	
-
 
 	public StockExchange() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public StockExchange(int id, String name, String brief, String address, String remarks) {
 		super();
@@ -46,7 +37,6 @@ public class StockExchange {
 		this.address = address;
 		this.remarks = remarks;
 	}
-
 
 	public int getId() {
 		return id;
@@ -87,6 +77,5 @@ public class StockExchange {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-
 
 }

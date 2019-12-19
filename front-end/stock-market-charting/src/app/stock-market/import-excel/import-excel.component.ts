@@ -8,13 +8,13 @@ import { StockMarketService } from 'src/app/services/stock-market.service';
   styleUrls: ['./import-excel.component.css']
 })
 export class ImportExcelComponent implements OnInit {
-  uploadFlag:boolean=false;
-  
+  uploadFlag: boolean = false;
 
-  constructor(private stockService:StockMarketService) {
+
+  constructor(private stockService: StockMarketService) {
   }
 
-  ngOnInit(){}
+  ngOnInit() { }
 
   fileChange(event) {
     let fileList: FileList = event.target.files;
@@ -22,7 +22,7 @@ export class ImportExcelComponent implements OnInit {
       let file: File = fileList[0];
       let formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
-      this.stockService.uploadFile(formData).subscribe((response)=>this.uploadFlag=true);
+      this.stockService.uploadFile(formData).subscribe((response) => this.uploadFlag = true);
     }
   }
 }

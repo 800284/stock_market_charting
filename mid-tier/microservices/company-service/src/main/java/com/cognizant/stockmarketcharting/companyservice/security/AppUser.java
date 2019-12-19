@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.cognizant.stockmarketcharting.companyservice.model.User;
 
-
-
 public class AppUser implements UserDetails {
 	private final Logger LOGGER = LoggerFactory.getLogger(AppUser.class);
 
@@ -23,8 +21,7 @@ public class AppUser implements UserDetails {
 	public AppUser(User user) {
 		LOGGER.info("Start");
 		this.user = user;
-		this.authorities = user.getRoleList().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getName()))
+		this.authorities = user.getRoleList().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
 				.collect(Collectors.toList());
 		LOGGER.info("End");
 	}

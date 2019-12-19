@@ -29,6 +29,7 @@ public class AuthenticationController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
 	@Autowired
 	UserRepository userRepository;
+
 	@GetMapping("/authenticate")
 	public Map<String, String> authenticate(@RequestHeader("Authorization") String authHeader) {
 		LOGGER.info("START");
@@ -43,7 +44,7 @@ public class AuthenticationController {
 		map.put("role", role);
 		map.put("user", user);
 		User userObj = userRepository.findByUsername(user);
-		map.put("confirm",""+userObj.isConfirmation());
+		map.put("confirm", "" + userObj.isConfirmation());
 		LOGGER.debug("map: {}", map);
 		LOGGER.info("END");
 		return map;

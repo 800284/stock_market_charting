@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.stockmarketcharting.excelupload.model.StockPrice;
 import com.cognizant.stockmarketcharting.excelupload.service.StockPriceService;
 
-
 @RestController
 @RequestMapping("/stock-market-charting")
 public class GraphController {
 	@Autowired
 	StockPriceService stockPriceService;
+
 	@GetMapping("/stock-details/{companyCode}")
 	List<StockPrice> getAllStockPrice(@PathVariable long companyCode) {
-		return stockPriceService.getAllStrockPrice(companyCode);		
+		return stockPriceService.getAllStrockPrice(companyCode);
 	}
 
 }

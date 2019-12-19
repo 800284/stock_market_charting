@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -8,9 +9,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private authService:AuthenticationService) { }
+  constructor(private router:Router,private authService:AuthenticationService) { }
 
   ngOnInit() {
   }
-
+  login(){
+    this.router.navigate(['/login']);
+  }
+  signUp(){
+    this.router.navigate(['/register']);
+  }
 }

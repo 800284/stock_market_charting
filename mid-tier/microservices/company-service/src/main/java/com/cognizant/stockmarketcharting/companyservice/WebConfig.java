@@ -22,21 +22,22 @@ public class WebConfig implements WebMvcConfigurer {
 		registry.addMapping("/**").allowedMethods("*").allowedOrigins("*");
 		LOGGER.info("END");
 	}
+
 	@Bean
 	public JavaMailSender getJavaMailSender() {
-	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-	    mailSender.setHost("smtp.gmail.com");
-	    mailSender.setPort(587);
-	     
-	    mailSender.setUsername("ctstestmail10@gmail.com");
-	    mailSender.setPassword("ftwdzvztccnthugz");
-	     
-	    Properties props = mailSender.getJavaMailProperties();
-	    props.put("mail.transport.protocol", "smtp");
-	    props.put("mail.smtp.auth", "true");
-	    props.put("mail.smtp.starttls.enable", "true");
-	    props.put("mail.debug", "true");
-	     
-	    return mailSender;
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+
+		mailSender.setUsername("ctstestmail10@gmail.com");
+		mailSender.setPassword("ftwdzvztccnthugz");
+
+		Properties props = mailSender.getJavaMailProperties();
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.debug", "true");
+
+		return mailSender;
 	}
 }

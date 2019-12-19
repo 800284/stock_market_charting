@@ -19,7 +19,7 @@ public class StockExchange {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ex_id")
+	@Column(name = "ex_id")
 	private int id;
 	@Column(name = "ex_stock_exchange")
 	private String name;
@@ -29,11 +29,9 @@ public class StockExchange {
 	private String address;
 	@Column(name = "ex_remarks")
 	private String remarks;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "company_stock",
-			joinColumns = @JoinColumn(name = "cs_ex_id"),
-			inverseJoinColumns = @JoinColumn(name="cs_cp_id"))
+	@JoinTable(name = "company_stock", joinColumns = @JoinColumn(name = "cs_ex_id"), inverseJoinColumns = @JoinColumn(name = "cs_cp_id"))
 	private Set<Company> companyList;
 
 	public StockExchange() {
@@ -88,6 +86,5 @@ public class StockExchange {
 	public void setCompanyList(Set<Company> companyList) {
 		this.companyList = companyList;
 	}
-	
-	
+
 }

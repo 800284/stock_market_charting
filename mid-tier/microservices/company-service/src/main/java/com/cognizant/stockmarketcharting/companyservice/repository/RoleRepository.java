@@ -5,11 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cognizant.stockmarketcharting.companyservice.model.Role;
 
-
-
-
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer>   {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 
 	public Role findByName(String name);
 }

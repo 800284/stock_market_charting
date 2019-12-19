@@ -5,10 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cognizant.stockmarketcharting.excelupload.model.User;
 
-
-
-
-
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 

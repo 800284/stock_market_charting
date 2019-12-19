@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.cognizant.stockmarketcharting.companyservice.security.AppUserDetailsService;
 import com.cognizant.stockmarketcharting.companyservice.security.JwtAuthorizationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -38,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		LOGGER.info("Start");
 		httpSecurity.cors();
-		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests()
-				.anyRequest().authenticated().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
+		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().anyRequest().authenticated().and()
+				.addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		LOGGER.info("End");
 	}
 

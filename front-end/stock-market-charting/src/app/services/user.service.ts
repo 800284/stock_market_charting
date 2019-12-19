@@ -15,8 +15,8 @@ export class UserService {
     let url = environment.baseUrl + "/authentication-service/stock-market-charting/users";
     return this.httpClient.post<any>(url, user);
   }
-  updateUser(user:User){
-    
+  updateUser(user: User) {
+
     let url = environment.baseUrl + "/authentication-service/stock-market-charting/users/update-user"
     let token = 'Bearer ' + this.authService.getToken();
     const httpOptions = {
@@ -25,10 +25,10 @@ export class UserService {
         'Authorization': token
       })
     };
-    return this.httpClient.put(url,user,httpOptions);
+    return this.httpClient.put(url, user, httpOptions);
   }
 
-  getUser(userName:String){
+  getUser(userName: String) {
     let url = environment.baseUrl + "/authentication-service/stock-market-charting/users/get-user/" + userName;
     let token = 'Bearer ' + this.authService.getToken();
     const httpOptions = {
@@ -37,11 +37,11 @@ export class UserService {
         'Authorization': token
       })
     };
-    return this.httpClient.get(url,httpOptions);
+    return this.httpClient.get(url, httpOptions);
   }
-  getUserStatus(username:String){
+  getUserStatus(username: String) {
     let url = environment.baseUrl + "/authentication-service/stock-market-charting/users/" + username;
     return this.httpClient.get(url);
-  
+
   }
 }

@@ -8,26 +8,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-@Table(name="sector")
+@Table(name = "sector")
 public class Sector {
-
 
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="se_id")
+	@Column(name = "se_id")
 	private int id;
-	
+
 	@NotNull
-	@Column(name="se_sector_name")
+	@Column(name = "se_sector_name")
 	private String sectorName;
-	
+
 	@NotNull
-	@Column(name="se_brief")
+	@Column(name = "se_brief")
 	private String aboutSector;
-	public Sector() {}
+
+	public Sector() {
+	}
 
 	public Sector(@NotNull int id, @NotNull String sectorName, @NotNull String aboutSector) {
 		super();
@@ -64,6 +64,5 @@ public class Sector {
 	public String toString() {
 		return "Sector [id=" + id + ", sectorName=" + sectorName + ", aboutSector=" + aboutSector + "]";
 	}
-	
-	
+
 }

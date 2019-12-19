@@ -29,7 +29,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	RoleRepository roleRepository;
 

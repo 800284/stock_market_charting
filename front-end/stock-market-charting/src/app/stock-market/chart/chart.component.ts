@@ -15,13 +15,13 @@ import { StockMarketService } from 'src/app/services/stock-market.service';
 export class ChartComponent implements OnInit {
 
   companies: Company[] = [];
-  company1:Company;
-  company2:Company;
+  company1: Company;
+  company2: Company;
   dataLoaded: Promise<boolean>;
   stockData: any[];
-  clickFlag:boolean;
-  chart:Highcharts.Chart
-  abc:Highcharts.LangOptions;
+  clickFlag: boolean;
+  chart: Highcharts.Chart
+  abc: Highcharts.LangOptions;
   public options: any = {
     chart: {
       type: 'line',
@@ -47,21 +47,21 @@ export class ChartComponent implements OnInit {
         }
       }
     },
-    
+
   }
-  constructor(private stockMarketService:StockMarketService) { }
+  constructor(private stockMarketService: StockMarketService) { }
 
   ngOnInit() {
 
     this.stockMarketService.getCompanies().subscribe((response: Company[]) => {
-      
+
       this.companies = response;
       this.dataLoaded = Promise.resolve(true);
-      this.chart=Highcharts.chart('container', this.options);
+      this.chart = Highcharts.chart('container', this.options);
     })
   }
   filterSelectedData(companyCode: string) {
-    this.clickFlag=true;
+    this.clickFlag = true;
     this.options.title.text = "Chart for the company with code " + companyCode;
     this.stockMarketService.getStockDetails(companyCode).subscribe((response: any) => {
       this.stockData = response;
@@ -79,27 +79,25 @@ export class ChartComponent implements OnInit {
             return -1;
           }
         });
-        console.log(data)
         this.chart.destroy();
-        this.chart=Highcharts.chart('container',this.options);
+        this.chart = Highcharts.chart('container', this.options);
         this.chart.addSeries({
           name: companyCode,
-          data:data,
-          type:"line"
-        },true,true);
+          data: data,
+          type: "line"
+        }, true, true);
         this.chart.redraw()
       })
     })
-}
- downloadCsv() {
- this.chart.getCSV();
- this.saveAsExcelFile(this.chart.getCSV(),"NewFile");
-}
+  }
+  downloadCsv() {
+    this.saveAsExcelFile(this.chart.getCSV(), "NewFile");
+  }
 
-private saveAsExcelFile(buffer: any, fileName: string): void {
-  const data: Blob = new Blob([buffer], {
-    type: "text/csv"
-  });
-  FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXTENSION);
-}
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], {
+      type: "text/csv"
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXTENSION);
+  }
 }

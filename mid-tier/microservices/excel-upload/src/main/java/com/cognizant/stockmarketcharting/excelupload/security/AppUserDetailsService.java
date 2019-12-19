@@ -20,8 +20,6 @@ import com.cognizant.stockmarketcharting.excelupload.model.User;
 import com.cognizant.stockmarketcharting.excelupload.repository.RoleRepository;
 import com.cognizant.stockmarketcharting.excelupload.repository.UserRepository;
 
-
-
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AppUserDetailsService.class);
@@ -31,7 +29,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	RoleRepository roleRepository;
 

@@ -33,8 +33,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		body.put("status", status.value());
 
 		// Get all validation errors
-		List<String> errors = ex.getBindingResult().getFieldErrors().stream()
-				.map(x -> x.getDefaultMessage()).collect(Collectors.toList());
+		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage())
+				.collect(Collectors.toList());
 
 		// Add errors to the response map
 		body.put("errors", errors);

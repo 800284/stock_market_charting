@@ -1,5 +1,5 @@
-  export interface BoardOfDirectors{
-    id:number;
-    name:string;
-    companyId:number;
+export interface BoardOfDirectors {
+  id: number;
+  name: string;
+  companyId: number;
 }

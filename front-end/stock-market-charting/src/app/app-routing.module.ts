@@ -26,12 +26,26 @@ const routes: Routes = [
         component: ImportExcelComponent,
         outlet: "customoutlet"
       },
-      { path: "view-companies", component: ViewCompaniesComponent, outlet: "customoutlet" },
-     
-      {path:"",component:WelcomeUserComponent,outlet:"customoutletuser"},
-      { path: "view-companies", component: ViewCompaniesComponent, outlet: "customoutletuser" },
-      { path: "view-chart", component: ChartComponent, outlet: "customoutletuser" },
-      { path: "compare-chart", component: CompareChartComponent, outlet: "customoutletuser" }
+      { path: "view-companies", 
+        component: ViewCompaniesComponent, 
+        outlet: "customoutlet" 
+      },
+      { path: "", 
+        component: WelcomeUserComponent, 
+        outlet: "customoutletuser" 
+      },
+      { path: "view-companies", 
+        component: ViewCompaniesComponent, 
+        outlet: "customoutletuser" 
+      },
+      { path: "view-chart", 
+        component: ChartComponent, 
+        outlet: "customoutletuser" 
+      },
+      { path: "compare-chart", 
+        component: CompareChartComponent, 
+        outlet: "customoutletuser" 
+      }
     ]
   },
   { path: "register", component: SignupComponent },

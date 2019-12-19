@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,35 +19,29 @@ import org.slf4j.LoggerFactory;
 @Entity
 @Table(name = "user")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "us_id")
 	private int id;
 
-	 
 	@Column(name = "us_username")
 	private String username;
 
-
-	 
 	@Column(name = "us_password")
 	private String password;
-	
-	 
+
 	@Column(name = "us_contact_no")
 	private String contactNo;
-	
-	 
+
 	@Column(name = "us_email")
 	private String email;
-	
-	@Column(name="us_confirmation")
+
+	@Column(name = "us_confirmation")
 	private boolean confirmation;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "ur_us_id"), 
-		inverseJoinColumns = @JoinColumn(name = "ur_ro_id"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "ur_us_id"), inverseJoinColumns = @JoinColumn(name = "ur_ro_id"))
 	private Set<Role> roleList;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(User.class);
@@ -132,10 +124,4 @@ public class User {
 				+ ", email=" + email + ", confirmation=" + confirmation + ", roleList=" + roleList + "]";
 	}
 
-
-
-	
-	
-
-	
 }

@@ -20,7 +20,7 @@
       <div class="col mt-3">
         <h5 class="text-alignment"> Login to check your stocks</h5>
         <div class="justify-content-center d-flex">
-          <button class="btn btn-primary mt-3 text-alignment">Login</button></div>
+          <button class="btn btn-primary mt-3 text-alignment" (click)="login()">Login</button></div>
       </div>
     </div>
     <div class="col-lg-6 col-sm-12">
@@ -41,7 +41,7 @@
         <div class="col-12 mt-3">
           <h5 class="text-alignment"> Intrested in Stock Market</h5>
           <div class="justify-content-center d-flex">
-            <button class="btn btn-primary mt-3 text-alignment">Register</button></div>
+            <button class="btn btn-primary mt-3 text-alignment" (click)="signUp()">Register</button></div>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div>
-     
+
     </div>
     <router-outlet name="customoutlet"></router-outlet>
   </div>
@@ -94,9 +94,9 @@
       </div>
     </div>
     <div class="">
-        <router-outlet name="customoutletuser"></router-outlet>
-      </div>
+      <router-outlet name="customoutletuser"></router-outlet>
+    </div>
   </div>
- 
+
 
 </div>

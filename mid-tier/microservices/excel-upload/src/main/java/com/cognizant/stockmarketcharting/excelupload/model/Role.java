@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Entity
-@Table(name="role")
+@Table(name = "role")
 public class Role {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Role.class);
 
@@ -19,14 +19,14 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ro_id")
 	int id;
-	
+
 	@Column(name = "ro_name")
 	String name;
-	
+
 	public Role() {
 		LOGGER.info("START");
 	}
-	
+
 	public Role(int id, String name) {
 		super();
 		this.id = id;
@@ -36,22 +36,22 @@ public class Role {
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + "]";
 	}
-	
+
 }

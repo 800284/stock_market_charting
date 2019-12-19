@@ -11,31 +11,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="stock_price")
+@Table(name = "stock_price")
 public class StockPrice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sp_id")
 	private int id;
-	
-	@Column(name="sp_company_code")
+
+	@Column(name = "sp_company_code")
 	private Long companyCode;
-	
-	@Column(name="sp_stock_exchange")
+
+	@Column(name = "sp_stock_exchange")
 	private String stockExchange;
-	
-	@Column(name="sp_current_price")
+
+	@Column(name = "sp_current_price")
 	private Long currentPrice;
-	
-	@Column(name="sp_date")
+
+	@Column(name = "sp_date")
 	private Date date;
-	
-	@Column(name="sp_time")
+
+	@Column(name = "sp_time")
 	private Time time;
-	
+
 	public StockPrice() {
 		super();
-	
+
 	}
 
 	public StockPrice(int id, Long companyCode, String stockExchange, Long currentPrice, Date date, Time time) {
@@ -101,8 +101,5 @@ public class StockPrice {
 		return "StockPrice [id=" + id + ", companyCode=" + companyCode + ", stockExchange=" + stockExchange
 				+ ", currentPrice=" + currentPrice + ", date=" + date + ", time=" + time + "]";
 	}
-	
-	
-	
-	
+
 }

@@ -19,55 +19,53 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="company")
+@Table(name = "company")
 public class Company {
-	
+
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="cp_id")
+	@Column(name = "cp_id")
 	private int id;
-	
+
 	@NotNull
-	@Column(name="cp_code")
+	@Column(name = "cp_code")
 	private Long companyCode;
-	
+
 	@NotNull
-	@Column(name="cp_name")
+	@Column(name = "cp_name")
 	private String name;
-	
+
 	@NotNull
-	@Column(name="cp_turnover")
+	@Column(name = "cp_turnover")
 	private Long turnover;
-	
+
 	@NotNull
-	@Column(name="cp_ceo")
+	@Column(name = "cp_ceo")
 	private String ceo;
-	
+
 	@NotNull
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "bm_cp_id")
 	private List<BoardOfDirectors> boardOfDirectorsList;
-	
+
 	@NotNull
-	@Column(name="cp_listed")
+	@Column(name = "cp_listed")
 	private boolean listed;
-	
+
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name="cp_se_id")
+	@JoinColumn(name = "cp_se_id")
 	private Sector sector;
-	
+
 	@NotNull
-	@Column(name="cp_brief")
+	@Column(name = "cp_brief")
 	private String aboutCompany;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "company_stock",
-			joinColumns = @JoinColumn(name = "cs_cp_id"),
-			inverseJoinColumns = @JoinColumn(name="cs_ex_id"))
+	@JoinTable(name = "company_stock", joinColumns = @JoinColumn(name = "cs_cp_id"), inverseJoinColumns = @JoinColumn(name = "cs_ex_id"))
 	private Set<StockExchange> stockExchanges;
-	
+
 	public Set<StockExchange> getStockExchanges() {
 		return stockExchanges;
 	}
@@ -78,7 +76,7 @@ public class Company {
 
 	public Company() {
 		super();
-		}
+	}
 
 	public int getId() {
 		return id;
@@ -168,9 +166,4 @@ public class Company {
 		this.stockExchanges = stockExchanges;
 	}
 
-
-	
-	
-	
-	
 }

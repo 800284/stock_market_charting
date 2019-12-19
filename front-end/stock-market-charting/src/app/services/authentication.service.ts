@@ -18,7 +18,7 @@ export class AuthenticationService {
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Basic ' + credentials);
     return this.httpClient.get(this.authenticationUrl, { headers });
-  } 
+  }
 
   public setToken(token: string) {
     this.token = token;
@@ -30,8 +30,8 @@ export class AuthenticationService {
   setLoggedinUser(userName) {
     this.loggedInUser = userName;
   }
-  setLoginFlag(){
-    this.logInFlag=true;
+  setLoginFlag() {
+    this.logInFlag = true;
   }
   getLoggedinUser() {
     return this.loggedInUser

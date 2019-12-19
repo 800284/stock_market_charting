@@ -12,17 +12,17 @@ import com.cognizant.stockmarketcharting.excelupload.model.StockPrice;
 
 @Repository
 public interface ExcelUploadRepository extends JpaRepository<StockPrice, Integer> {
-	
-	@Query(value="select min(sp_date) from stock_price",nativeQuery=true)
+
+	@Query(value = "select min(sp_date) from stock_price", nativeQuery = true)
 	public Date minDate();
-	
-	@Query(value="select max(sp_date) from stock_price",nativeQuery=true)
+
+	@Query(value = "select max(sp_date) from stock_price", nativeQuery = true)
 	public Date maxDate();
-	
-	@Query(value="select * from stock_price where sp_date=?1 and sp_time=?2 and sp_company_code=?3 and sp_stock_exchange=?4 LIMIT 1",nativeQuery=true)
-	public StockPrice getStock(Date date,Time time,long code,String exchange);
-	
-	@Query(value="select * from stock_price where sp_company_code=?1 group by sp_date",nativeQuery = true)
+
+	@Query(value = "select * from stock_price where sp_date=?1 and sp_time=?2 and sp_company_code=?3 and sp_stock_exchange=?4 LIMIT 1", nativeQuery = true)
+	public StockPrice getStock(Date date, Time time, long code, String exchange);
+
+	@Query(value = "select * from stock_price where sp_company_code=?1 group by sp_date", nativeQuery = true)
 	public List<StockPrice> findByCompanyCode(long companyCode);
-	
+
 }

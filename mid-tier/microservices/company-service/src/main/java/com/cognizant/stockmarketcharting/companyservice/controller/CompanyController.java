@@ -13,13 +13,13 @@ import com.cognizant.stockmarketcharting.companyservice.service.CompanyService;
 @RestController
 @RequestMapping("/stock-market-charting/company")
 public class CompanyController {
-	
+
 	@Autowired
 	CompanyService companyService;
-	
+
 	@GetMapping("/get-companies")
-	public List<Company> getAllCompanies(){
+	public List<Company> getAllCompanies() {
 		return companyService.findAllCompanies();
 	}
-	
+
 }

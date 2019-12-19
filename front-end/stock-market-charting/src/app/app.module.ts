@@ -39,7 +39,7 @@ import { CompareChartComponent } from './stock-market/compare-chart/compare-char
 
   ],
   imports: [
-    
+
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

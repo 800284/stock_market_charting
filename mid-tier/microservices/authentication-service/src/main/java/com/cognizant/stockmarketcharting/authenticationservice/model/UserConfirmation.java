@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="confirm_email")
+@Table(name = "confirm_email")
 public class UserConfirmation {
 
 	@Id

@@ -15,12 +15,12 @@ public class BoardOfDirectors {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="bm_id")
+	@Column(name = "bm_id")
 	private int id;
-	
+
 	@Column(name = "bm_cp_name")
 	private String name;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "bm_cp_id")
 	private Company company;
@@ -54,6 +54,4 @@ public class BoardOfDirectors {
 		this.company = company;
 	}
 
-	
-	
 }

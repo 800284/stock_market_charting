@@ -8,20 +8,20 @@ import { StockMarketService } from 'src/app/services/stock-market.service';
   styleUrls: ['./get-summary.component.css']
 })
 export class GetSummaryComponent implements OnInit {
-  summary:any;
-  summary1:Summary;
-  constructor(private importExcel:StockMarketService) { }
+  summary: any;
+  summary1: Summary;
+  constructor(private importExcel: StockMarketService) { }
 
   ngOnInit() {
-  this.summary={
-    noOfRecords:0,
-    companyName:"",
-    maxDate:new Date(),
-    minDate: new Date()
-  }
-  
-this.importExcel.showSummary().subscribe((response:any)=>{this.summary=response})
-  
+    this.summary = {
+      noOfRecords: 0,
+      companyName: "",
+      maxDate: new Date(),
+      minDate: new Date()
+    }
+
+    this.importExcel.showSummary().subscribe((response: any) => { this.summary = response })
+
   }
 
 

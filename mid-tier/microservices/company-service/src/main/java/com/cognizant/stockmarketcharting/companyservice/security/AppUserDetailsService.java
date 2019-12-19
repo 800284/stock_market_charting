@@ -13,8 +13,6 @@ import com.cognizant.stockmarketcharting.companyservice.model.User;
 import com.cognizant.stockmarketcharting.companyservice.repository.RoleRepository;
 import com.cognizant.stockmarketcharting.companyservice.repository.UserRepository;
 
-
-
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AppUserDetailsService.class);
@@ -24,7 +22,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	RoleRepository roleRepository;
 
@@ -43,21 +41,6 @@ public class AppUserDetailsService implements UserDetailsService {
 		LOGGER.info("End");
 		return appUser;
 	}
-
-//	@Transactional
-//	public boolean signup(User user) throws UserAlreadyExistsException {
-//		LOGGER.info("Start");
-//		User existingUser = userRepository.findByUsername(user.getUsername());
-//		if (existingUser != null) {
-//			throw new UserAlreadyExistsException();
-//		}
-//		Set<Role> roleList = new LinkedHashSet<Role>();
-//		roleList.add(roleRepository.findByName("USER"));
-//		user.setRoleList(roleList);
-//		userRepository.save(user);
-//		LOGGER.info("End");
-//		return true;
-//	}
 
 	public AppUserDetailsService(UserRepository userRepository, RoleRepository roleRepository) {
 		LOGGER.info("Start");

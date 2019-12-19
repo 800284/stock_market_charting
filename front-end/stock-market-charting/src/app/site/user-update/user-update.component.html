@@ -7,28 +7,28 @@
         </div>
     <section class="border shadow-lg rounded-lg section-margin" *ngIf="!updateSuccess">
         
-        <form [formGroup]="signupForm" (ngSubmit)="updateUser(signupForm)" novalidate>
+        <form [formGroup]="updateForm" (ngSubmit)="updateUser(updateForm)" novalidate>
         
                 
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-lg-6  mt-4">
                         <label for="username">Username*</label>
-                        <span *ngIf="signupForm.get('userName').touched;else elseBlockUserName">
+                        <span *ngIf="updateForm.get('userName').touched;else elseBlockUserName">
                             <input type="text" class="form-control" placeholder="Enter Username"
                                 formControlName="userName" id="username" name="username" (keyup)="changeValue()"
                                 [ngClass]="{
-                            'border border-danger': signupForm.get('userName').errors?.required || signupForm.get('userName').errors?.minlength 
-                            || signupForm.get('userName').errors?.maxlength || userPresent, 
-                            '': !signupForm.get('userName').errors?.required || !signupForm.get('userName').errors?.minlength || !signupForm.get('userName').errors?.maxlength
+                            'border border-danger': updateForm.get('userName').errors?.required || updateForm.get('userName').errors?.minlength 
+                            || updateForm.get('userName').errors?.maxlength || userPresent, 
+                            '': !updateForm.get('userName').errors?.required || !updateForm.get('userName').errors?.minlength || !updateForm.get('userName').errors?.maxlength
                           }" />
                             <div>
                                 <div class="text-danger  position-absolute"
-                                    *ngIf="signupForm.get('userName').errors?.minlength || signupForm.get('userName').errors?.maxlength">
+                                    *ngIf="updateForm.get('userName').errors?.minlength || updateForm.get('userName').errors?.maxlength">
                                     Length should be between 2 & 15!
                                 </div>
 
                                 <div class="text-danger position-absolute"
-                                    *ngIf="signupForm.get('userName').errors?.required">
+                                    *ngIf="updateForm.get('userName').errors?.required">
                                     Username is required!
                                 </div>
                             </div>
@@ -45,20 +45,20 @@
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-md-6  mt-4">
                         <label for="password">Password*</label>
-                        <span *ngIf="signupForm.get('password').touched;else elseBlockPassword">
+                        <span *ngIf="updateForm.get('password').touched;else elseBlockPassword">
                             <input type="password" class="form-control " placeholder="Enter New Password" name="password"
                                 formControlName="password" id="password" [ngClass]="{
-                                'border border-danger': signupForm.get('password').errors?.required || signupForm.get('password').errors?.minlength || signupForm.get('password').errors?.maxlength, 
-                                '': !signupForm.get('password').errors?.required || !signupForm.get('password').errors?.minlength || !signupForm.get('password').errors?.maxlength
+                                'border border-danger': updateForm.get('password').errors?.required || updateForm.get('password').errors?.minlength || updateForm.get('password').errors?.maxlength, 
+                                '': !updateForm.get('password').errors?.required || !updateForm.get('password').errors?.minlength || !updateForm.get('password').errors?.maxlength
                               }" />
                             <div>
                                 <div class="text-danger position-absolute"
-                                    *ngIf="signupForm.get('password').errors?.minlength || signupForm.get('password').errors?.maxlength">
+                                    *ngIf="updateForm.get('password').errors?.minlength || updateForm.get('password').errors?.maxlength">
                                     Password should be between 2 & 15!
                                 </div>
 
                                 <div class="text-danger position-absolute"
-                                    *ngIf="signupForm.get('password').errors?.required">
+                                    *ngIf="updateForm.get('password').errors?.required">
                                     Password is required!
                                 </div>
                             </div>
@@ -70,19 +70,19 @@
                     </div>
                     <div class="col-sm-12 col-md-6 mt-4">
                         <label for="cnfpassword">Confirm Password*</label>
-                        <span *ngIf="signupForm.get('confirmPassword').touched;else elseBlockConfirmPassword">
+                        <span *ngIf="updateForm.get('confirmPassword').touched;else elseBlockConfirmPassword">
                             <input type="password" class="form-control" placeholder="Confirm New Password" name="password"
                                 formControlName="confirmPassword" id="cnfpassword" (keyup)="checkIfMatchingPasswords()"
                                 [ngClass]="{
-                                'border border-danger': signupForm.get('confirmPassword').errors?.required, 
-                                '': !signupForm.get('confirmPassword').errors?.required 
+                                'border border-danger': updateForm.get('confirmPassword').errors?.required, 
+                                '': !updateForm.get('confirmPassword').errors?.required 
                               }" />
                             <div class="text-danger position-absolute"
-                                *ngIf="!checkpass && !signupForm.get('confirmPassword').errors?.required">
+                                *ngIf="!checkpass && !updateForm.get('confirmPassword').errors?.required">
                                 Passwords should be same
                             </div>
                             <div class="text-danger position-absolute"
-                                *ngIf="signupForm.get('confirmPassword').errors?.required">
+                                *ngIf="updateForm.get('confirmPassword').errors?.required">
                                 Confirm Password is required
                             </div>
 
@@ -98,21 +98,21 @@
                 <div class="form-row ml-3 mr-3">
                     <div class="col-sm-12 col-md-6  mt-4">
                         <label for="contactnumber">Contact Number*</label>
-                        <span *ngIf="signupForm.get('contactNo').touched;else elseBlockContactNumber">
+                        <span *ngIf="updateForm.get('contactNo').touched;else elseBlockContactNumber">
                             <input type="text" class="form-control " placeholder="Enter Contact Number" name="contactNo"
                                 formControlName="contactNo" id="contactnumber"
                                 onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                                 [ngClass]="{
-                                'border border-danger': signupForm.get('contactNo').errors?.required || signupForm.get('contactNo').errors?.minlength || signupForm.get('contactNo').errors?.maxlength,
-                                '': !signupForm.get('contactNo').errors?.required  || !signupForm.get('contactNo').errors?.minlength || !signupForm.get('contactNo').errors?.maxlength
+                                'border border-danger': updateForm.get('contactNo').errors?.required || updateForm.get('contactNo').errors?.minlength || updateForm.get('contactNo').errors?.maxlength,
+                                '': !updateForm.get('contactNo').errors?.required  || !updateForm.get('contactNo').errors?.minlength || !updateForm.get('contactNo').errors?.maxlength
                               }" />
 
                             <div class="text-danger position-absolute"
-                                *ngIf="signupForm.get('contactNo').errors?.minlength || signupForm.get('contactNo').errors?.maxlength">
+                                *ngIf="updateForm.get('contactNo').errors?.minlength || updateForm.get('contactNo').errors?.maxlength">
                                 Contact Number should be of 10 digits!
                             </div>
                             <div class="text-danger position-absolute"
-                                *ngIf="signupForm.get('contactNo').errors?.required">
+                                *ngIf="updateForm.get('contactNo').errors?.required">
                                 Contact Number is required
                             </div>
                         </span>
@@ -124,17 +124,17 @@
                     </div>
                     <div class="col-sm-12 col-md-6 mt-4">
                         <label for="emailid">Email*</label>
-                        <span *ngIf="signupForm.get('emailId').touched;else elseBlockEmail">
+                        <span *ngIf="updateForm.get('emailId').touched;else elseBlockEmail">
                             <input type="text" class="form-control" placeholder="Enter Email id" name="emailId"
                                 formControlName="emailId" id="emailid" [ngClass]="{
-                                'border border-danger': signupForm.get('emailId').errors?.required,
-                                '': !signupForm.get('emailId').errors?.required 
+                                'border border-danger': updateForm.get('emailId').errors?.required,
+                                '': !updateForm.get('emailId').errors?.required 
                               }" />
-                            <div class="text-danger position-absolute" *ngIf="signupForm.get('emailId').errors?.email">
+                            <div class="text-danger position-absolute" *ngIf="updateForm.get('emailId').errors?.email">
                                 Please enter valid email!
                             </div>
                             <div class="text-danger position-absolute"
-                                *ngIf="signupForm.get('emailId').errors?.required">
+                                *ngIf="updateForm.get('emailId').errors?.required">
                                 Email Id is required!
                             </div>
                         </span>
@@ -150,7 +150,7 @@
             <div class="form-row mt-3 mb-5 ml-3">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary mt-2 "
-                        [disabled]="!signupForm.valid  ||!checkpass  ">Update</button>
+                        [disabled]="!updateForm.valid  ||!checkpass  ">Update</button>
                 </div>
             </div>
         </form>

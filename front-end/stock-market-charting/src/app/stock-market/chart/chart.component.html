@@ -5,15 +5,17 @@
         </div>
 
         <div class="row">
-            <select id="vendorType" [(ngModel)]="vendorType" class="form-control row" (change)="filterSelectedData($event.target.value)">
-                <option *ngFor="let company of companies" value="{{company.companyCode}}">{{company.companyCode}}</option>
-                </select>
+            <select id="vendorType" [(ngModel)]="vendorType" class="form-control row"
+                (change)="filterSelectedData($event.target.value)">
+                <option *ngFor="let company of companies" value="{{company.companyCode}}">{{company.companyCode}}
+                </option>
+            </select>
         </div>
     </div>
 </div>
 <div class="container">
-<div id="container"></div>
+    <div id="container"></div>
 </div>
-<div class="container justify-content-center d-flex"  *ngIf="clickFlag"> 
-<button (click)="downloadCsv()" class="btn btn-primary text-alignment ">Export Data</button>
+<div class="container justify-content-center d-flex" *ngIf="clickFlag">
+    <button (click)="downloadCsv()" class="btn btn-primary text-alignment ">Export Data</button>
 </div>

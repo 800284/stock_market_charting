@@ -56,9 +56,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 			// parse the token.
 			Jws<Claims> jws;
 			try {
-				jws = Jwts.parser()
-						.setSigningKey("secretkey")
-						.parseClaimsJws(token.replace("Bearer ", ""));
+				jws = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token.replace("Bearer ", ""));
 				String user = jws.getBody().getSubject();
 				LOGGER.debug("user : {}", user);
 				if (user != null) {
