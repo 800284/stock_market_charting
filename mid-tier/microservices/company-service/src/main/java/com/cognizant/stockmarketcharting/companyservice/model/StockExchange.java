@@ -37,6 +37,17 @@ public class StockExchange {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public StockExchange(int id, String name, String brief, String address, String remarks) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.brief = brief;
+		this.address = address;
+		this.remarks = remarks;
+	}
+
+
 	public int getId() {
 		return id;
 	}
