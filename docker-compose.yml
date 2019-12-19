@@ -1,0 +1,77 @@
+version: '3'
+services:
+  stockmarketcharting-mysql:
+    image: mysql:8.0.18
+    ports:
+      - "33078:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass@word1
+    volumes:
+      - c:/Users/Admin/Documents:/var/lib/mysql
+      - ./dbscripts:/docker-entrypoint-initdb.d
+  authentication-service:
+    image: authentication-app
+    build: ./mid-tier/microservices/authentication-service
+    ports:
+      - 8084:8084
+    depends_on:
+      - stockmarketcharting-mysql
+      - eureka-discovery-service
+    links:
+      - stockmarketcharting-mysql
+      - eureka-discovery-service
+  company-service:
+    image: blood-app
+    build: ./mid-tier/microservices/company-service
+    ports:
+      - 8087:8087
+    depends_on:
+      - stockmarketcharting-mysql
+      - eureka-discovery-service
+    links:
+      - stockmarketcharting-mysql
+      - eureka-discovery-service	  
+  excelupload-service:
+	image: upload-app
+    build: ./mid-tier/microservices/excel-upload
+    ports:
+      - 8088:8088
+    depends_on:
+      - stockmarketcharting-mysql
+      - eureka-discovery-service
+    links:
+      - stockmarketcharting-mysql
+      - eureka-discovery-service	
+  eureka-discovery-service:
+    image: eureka-app
+    build: ./mid-tier/microservices/eureka-discovery-server
+    ports:
+      - 8093:8093
+    depends_on:
+      - stockmarketcharting-mysql
+    links:
+      - stockmarketcharting-mysql
+  zuul-gateway:
+    image: zuul-app
+    build: ./mid-tier/microservices/zuul-gateway
+    ports:
+      - 8083:8083
+    depends_on:
+      - stockmarketcharting-mysql
+      - company-service
+	  - excelupload-service
+      - authentication-service
+      - eureka-discovery-service
+    links:
+      - stockmarketcharting-mysql
+	  - excelupload-service
+      - company-service
+      - authentication-service
+      - eureka-discovery-service
+  angular-service:
+    image: angular-app
+    build: ./front-end/stock-market-charting/dist
+    ports:
+      - 4200:80
+    links:
+      - zuul-gateway
